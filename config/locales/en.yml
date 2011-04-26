@@ -1,0 +1,55 @@
+en:
+  page: 
+    contents: Contents
+    title: Title
+    nav_title: Navigation Title    
+    path: Path
+    meta_title: Meta Title
+    meta_description: Meta Description 
+    meta_keywords: Meta Keywords
+    accessible: Accessible
+    visible: Visible
+    explain_accessible: non-accessible pages must be coded into a custom controller.
+    explain_visible: visible pages will show up in the main menu.
+    
+  content:
+    page_title: Page Title
+    page: Page
+    title: Title
+    body: Body
+    attachment: Attachment
+    link: Link URL
+    link_text: Link Text
+    context: Context
+    hide_title: Hide Title
+  
+  pages: Pages
+  
+  admin:
+    subnav:
+      pages: Pages
+    shared:
+      contents_tab:
+        content: Content
+      page_tabs:
+        editing_page: Editing Page
+        page_details: Page Details
+        contents: Contents
+        images: Images
+    pages:
+      index:
+        title: Title
+        listing_pages: Listing Pages
+        new_page: New Page        
+        title_contains: Title        
+      new: 
+        new_page: New Page
+        
+    contents:
+      index:
+        new_content: New Content
+        listing_contents: Listing Contents
+      new:
+        new_content: New Content
+      edit:
+        edit_content: Edit Content
