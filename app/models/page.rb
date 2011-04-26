@@ -1,7 +1,10 @@
 class Page < ActiveRecord::Base
   
   validates_presence_of :title
-  validates :path, :presence => true, :uniqueness => true
+  validates_presence_of :path
+  #validates_uniqueness_of :path, :case_sensitive => false
+  
+  validates :path, :presence => true, :uniqueness => { :case_sensitive => false }
   
   scope :active,  where(:accessible => true)
   scope :visible, active.where(:visible => true)
@@ -40,12 +43,13 @@ class Page < ActiveRecord::Base
   end
   
   def root?
-    self.path == "/"
+    self.path == "/" || self.path == "home"
   end
   
   private
   
     def set_defaults
+      return if title.blank?
       self.nav_title = title if nav_title.blank?
       self.path = nav_title.parameterize if path.blank?
       self.path = "/" + path.sub(/^\//, '')

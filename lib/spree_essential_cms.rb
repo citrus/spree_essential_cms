@@ -12,7 +12,7 @@ module SpreeEssentialCms
   
   def self.independent?
     return true unless defined?(SpreeEssentials)
-    !SpreeEssentials.has?(:press)
+    !SpreeEssentials.respond_to?(:register)
   end
   
   class Engine < Rails::Engine
@@ -21,8 +21,8 @@ module SpreeEssentialCms
   
 end
 
-if SpreeEssentialPress.independent?
+if SpreeEssentialCms.independent?
   require 'spree_essential_press/custom_hooks'
 else 
-  SpreeEssentials.register :press, SpreeEssentialPress 
+  SpreeEssentials.register :blog, SpreeEssentialCms
 end
