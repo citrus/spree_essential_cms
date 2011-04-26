@@ -20,7 +20,7 @@ class PageTest < Test::Unit::TestCase
   
   should "return false unless root" do
     page = Factory.create(:page, :path => "/another")
-    assert page.root?
+    assert !page.root?
   end
     
 end

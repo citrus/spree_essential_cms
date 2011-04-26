@@ -1,9 +1,6 @@
 class Page < ActiveRecord::Base
   
   validates_presence_of :title
-  validates_presence_of :path
-  #validates_uniqueness_of :path, :case_sensitive => false
-  
   validates :path, :presence => true, :uniqueness => { :case_sensitive => false }
   
   scope :active,  where(:accessible => true)
@@ -43,13 +40,14 @@ class Page < ActiveRecord::Base
   end
   
   def root?
-    self.path == "/" || self.path == "home"
+    self.path == "/"
   end
   
   private
   
     def set_defaults
       return if title.blank?
+      return errors.add(:path, "is reserved. Please use another") if path.to_s =~ /home/
       self.nav_title = title if nav_title.blank?
       self.path = nav_title.parameterize if path.blank?
       self.path = "/" + path.sub(/^\//, '')
