@@ -1,0 +1,20 @@
+<%= render :partial => 'admin/shared/contents_sub_menu' %>
+
+<%= render :partial => 'admin/shared/page_tabs', :locals => {:current => "Images"} %>
+
+<% if @page_image.try(:errors).present? %>
+  <%= render 'shared/error_messages', :target => @page_image %>
+<% end %>
+
+<%= form_for([:admin, @page.id, @page_image], :url => admin_page_image_url(@page, @page_image), :html => { :multipart => true }) do |f| %>
+    <p>
+      <%= label_tag ("thumbnail") %>:<br/>
+      <%= link_to(image_tag(@page_image.attachment.url(:mini)), @page_image.attachment.url(:product)) %>
+    </p>
+    <%= render "form", :form => f %>
+  </table>
+  <p class="form-buttons">
+    <%= button t("update") %>
+    or <%= link_to t("cancel"), admin_page_images_url(@page), :id => "cancel_link" %>
+  </p>
+<% end %>

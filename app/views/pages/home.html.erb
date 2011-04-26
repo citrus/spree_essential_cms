@@ -1,0 +1,28 @@
+<% unless @page.images.empty? %>
+  <%= render 'shared/slideshow', :images => @page.images, :size => :slide %>
+<% end %>
+
+<% if @page.has_context?('intro') %>
+  <div class="intro">
+    <%= render 'shared/content', :content => @page.for_context('intro').first %>
+  </div>
+<% end %>
+
+<div class="left">
+  <%= render :partial => 'shared/content', :collection => @page.for_context("") %>
+</div>
+
+<div class="right">
+  <% if defined?(SpreeEssentialBlog) && !@posts.blank? %>
+    <div class="home-posts">
+      <h1><%= t('blog.home.title') %></h1>
+      <%= render :partial => 'blog/posts/preview', :collection => @posts, :as => :post %>
+    </div>
+  <% end %>
+  <% if defined?(SpreeEssentialNews) && !@articles.blank? %>
+    <div class="home-articles">
+      <h1><%= t('news.home.title') %></h1>
+      <%= render :partial => 'news/articles/preview', :collection => @articles, :as => :article %>
+    </div>
+  <% end %>
+</div>

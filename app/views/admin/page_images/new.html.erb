@@ -1,0 +1,20 @@
+<h3><%= t("new_image") %></h3>
+
+<%= render 'shared/error_messages', :target => @page_image %>
+
+<%= form_for(@page_image, :url => admin_page_images_path(@page), :html => { :multipart => true }) do |form| %>
+  <table class="basic-table">
+    <%= render "form", :form => form %>
+  </table>
+  <p class="form-buttons">
+    <%= button t("create") %>
+    or <%= link_to t("cancel"), "#", :id => "cancel_link" %>
+  </p>
+<% end %>
+
+<script type="text/javascript">    
+  jQuery('#cancel_link').click(function (event) { 
+    jQuery('#new_image_link').show();
+    jQuery('#images').html('');
+  }); 
+</script>

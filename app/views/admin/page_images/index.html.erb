@@ -1,0 +1,42 @@
+<%= render :partial => 'admin/shared/page_tabs', :locals => {:current => "Images"} %>
+
+<table class="index sortable">
+	<tr>
+	  <th><%= t("thumbnail") %></th>
+	  <th><%= t("alt_text") %></th>
+	  <th><%= t("action") %></th>
+	</tr>
+ 
+  <% @page.images.each do |image| %>
+    <tr id="<%= dom_id(image).sub('page_', '') %>">
+      <td><span class="handle">&nbsp;</span>&nbsp; <%= link_to(image_tag(image.attachment.url(:mini)), image.attachment.url(:large)) %></td>
+      <td><%= image.alt %></td>
+      <td class="actions">
+        <%= link_to_with_icon('edit', t("edit"), edit_admin_page_image_url(@page, image)) %>
+        &nbsp;
+        <%= link_to_delete image, {:url => admin_page_image_url(@page, image) }%>
+      </td>
+    </tr>
+  <% end %>
+ 
+</table>
+
+<div id="images"></div>
+<br/>
+<p>
+    <%= link_to icon('add') + ' ' + t("new_image"), new_admin_page_image_url(@page), :id => "new_image_link" %>
+</p>
+
+<% content_for :head do %>
+  <script type="text/javascript">
+    jQuery(document).ready(function(){  
+      
+      jQuery('#new_image_link').click(function (event) { 
+        event.preventDefault();
+        jQuery(this).hide();
+        jQuery.ajax({type: 'GET', url: this.href, data: ({authenticity_token: AUTH_TOKEN}), success: function(r){ jQuery('#images').html(r);} });
+      });
+      
+    });
+  </script>
+<% end %>

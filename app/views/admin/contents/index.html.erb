@@ -1,0 +1,59 @@
+<%= render :partial => 'admin/shared/contents_sub_menu' %>
+
+<div class='toolbar'>
+  <ul class='actions'>
+    <li>
+      <p><%= button_link_to t('.new_content'), new_object_url, :icon => 'add' %></p>
+    </li>
+  </ul>
+  <br class='clear' />
+</div>
+
+<%= render :partial => 'admin/shared/page_tabs', :locals => {:current => 'Contents'} %>
+
+<h2><%= t('.listing_contents') %></h2>
+
+<table class="index sortable">
+  <thead>
+	<tr>
+    	<th><%= sort_link @search, :title, t("content.title") %></th>
+    	<th><%= sort_link @search, :context, t("content.context") %></th>
+    	<th><%= t("action") %></th>
+	</tr>
+  </thead>
+  <tbody>
+    <%- @collection.each do |content|%>
+    <tr id="<%= dom_id content %>">
+      <td><span class="handle">&nbsp;</span>&nbsp; <%= link_to content.title, object_url(content) %></td>
+      <td><%= content.context %>
+      <td>
+      	<%= link_to_edit content %> &nbsp;
+      	<%= link_to_delete content %>
+      </td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= will_paginate(@contents, :prev => "&#171; #{t('previous')}", :next => "#{t('next')} &#187;") %>
+
+<% content_for :sidebar do %>
+
+<div class="box">
+  <h3><%= t(:search) %></h3>
+
+  <% @content = Content.metasearch %>
+  <%= form_for [:admin, @page, @content] do |f| %>
+    <%- locals = {:f => f} %>
+    <%= hook :admin_contents_index_search, locals do %>
+      <p>
+        <label><%= t('content.title') %></label><br />
+        <%= f.text_field :title_like, :size => 25 %>
+      </p>      
+    <% end %>
+    <%= hook :admin_contents_index_search_buttons, locals do %>
+      <p><%= button t("search") %></p>
+    <% end %>
+  <% end %>
+</div>
+<% end %>

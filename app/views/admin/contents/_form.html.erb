@@ -1,0 +1,74 @@
+<%= form.field_container :title do %>
+  <%= form.label :title, t('content.title') %><br />
+  <%= form.text_field :title, :class => "title"  %>
+  <%= error_message_on :content, :title %>
+<% end %>
+
+<%= form.field_container :page do %>
+  <%= form.label :page_id, t('content.page') %><br />
+  <%= form.select :page_id, @pages.collect{|i| [i.title, i.id]}  %>
+  <%= error_message_on :content, :page_id %>
+<% end %>
+
+<%= form.field_container :body do %>
+  <%= form.label :title, t('content.body') %><%= markdown_helper %><br />
+  <%= form.text_area :body  %>
+  <%= error_message_on :content, :body %>
+<% end %>
+
+<p><%= link_to "Optional Fields <span>&#9650;</span>".html_safe, "#options", :id => "btn_optional" %></p>
+
+<div class="optional" style="display: none;">
+
+  <%= form.field_container :attachment do %>
+    <%= form.label :attachment, t('content.attachment') %><br />
+    <%= form.file_field :attachment %>
+    <%= error_message_on :content, :attachment %>
+  <% end %>
+  
+  <% if @content.has_image? %>
+    <p><%= image_tag @content.attachment.url(:mini) %></p>
+  <% end %>
+
+  <%= form.field_container :link do %>
+    <%= form.label :link, t('content.link') %><br />
+    <%= form.text_field :link, :class => "text"  %>
+    <%= error_message_on :content, :link %>
+  <% end %>
+  
+  <%= form.field_container :link_text do %>
+    <%= form.label :link_text, t('content.link_text') %><br />
+    <%= form.text_field :link_text, :class => "text"  %>
+    <%= error_message_on :content, :link_text %>
+  <% end %>
+  
+  <%= form.field_container :context do %>
+    <%= form.label :context, t('content.context') %><br />
+    <%= form.text_field :context, :class => "text"  %>
+    <%= error_message_on :content, :context %>
+  <% end %>
+
+  <%= form.field_container :hide_title do %>
+    <%= form.check_box :hide_title, :class => "checkbox"  %>
+    <%= form.label :hide_title, t('content.hide_title') %><br />
+    <%= error_message_on :content, :hide_title %>
+  <% end %>
+
+</div>
+
+<% content_for :head do %>
+  <%= stylesheet_link_tag "markitup.css" %>
+  <%= javascript_include_tag 'jquery.markitup.js', 'markdown.set.js' %>
+  <script type="text/javascript">
+  //<![CDATA[
+    $(document).ready(function() {
+      $('#content_body').markItUp(markdownSettings);
+      $('#btn_optional').click(function(evt) {
+        evt.preventDefault();
+        var vis = $('.optional').toggle().css('display') == 'block';
+        $(this).find('span').html(vis ? '&#9660;' : '&#9650;');
+      });
+    }); 
+  //]]>
+  </script>
+<% end %>

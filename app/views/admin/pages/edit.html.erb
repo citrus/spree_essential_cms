@@ -1,0 +1,14 @@
+<%= render :partial => 'admin/shared/contents_sub_menu' %>
+
+<%= render :partial => 'admin/shared/page_tabs', :locals => {:current => 'Page Details'} %>
+
+<% if @page.try(:errors).present? %>
+  <%= render 'shared/error_messages', :target => @page %>
+<% end %>
+
+<%= form_for([:admin, @page]) do |f| %>
+  <%= render "form", :form => f %>
+  <p class="form-buttons">
+    <%= button t("update") %> <%= t('or') %> <%= link_to t('cancel'), collection_url %>
+  </p>
+<% end %>

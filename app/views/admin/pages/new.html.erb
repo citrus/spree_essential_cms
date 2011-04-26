@@ -1,0 +1,16 @@
+<%= render :partial => 'admin/shared/contents_sub_menu' %>
+
+<% if @page.try(:errors).present? %>
+  <%= render 'shared/error_messages', :target => @page %>
+<% end %>
+
+<h1><%= t('.new_page') %></h1>
+
+<% form_for([:admin, @page], :html => { :multipart => true }) do |f| %>
+  <%= render "form", :form => f %>
+
+  <p class="form-buttons">
+    <%= button t('create') %> <%= t('or') %> <%= link_to t('cancel'), collection_url %>
+  </p>
+<% end %>
+

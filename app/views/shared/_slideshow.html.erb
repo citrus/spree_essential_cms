@@ -1,0 +1,8 @@
+<% size ||= nil %>
+<% if defined?(images) && !images.nil? %>
+  <div class="slideshow<%= " #{size}" if size %>">
+    <% images.each do |image| %>
+      <%= image_tag image.attachment.url(size), :alt => image.alt %>
+    <% end %>
+  </div>
+<% end %>
