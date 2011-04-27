@@ -13,7 +13,8 @@ class PagesController < ApplicationController
   private
   
     def get_page
-      @page = Page.active.find_by_path(page_path)
+      @page = Page.active.find_by_path(page_path) rescue nil
+      return raise ActionController::RoutingError.new(page_path) unless @page
     end
       
     def page_path
@@ -23,5 +24,5 @@ class PagesController < ApplicationController
     def accurate_title
       @page.meta_title
     end
-  
+    
 end

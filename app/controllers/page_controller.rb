@@ -9,6 +9,7 @@ class PageController < ApplicationController
   
     def get_page
       @page = Page.active.find_by_path(page_path)
+      return raise ActionController::RoutingError.new(page_path) unless @page
     end
       
     def page_path

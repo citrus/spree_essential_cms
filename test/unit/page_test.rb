@@ -1,12 +1,10 @@
-require 'test_helper'
+require_relative '../test_helper'
 
 class PageTest < Test::Unit::TestCase
 
   def setup
     Page.destroy_all
   end
-  
-  subject { Page.new }
   
   should validate_presence_of(:title)
   should validate_presence_of(:path)
@@ -22,5 +20,11 @@ class PageTest < Test::Unit::TestCase
     page = Factory.create(:page, :path => "/another")
     assert !page.root?
   end
-    
+  
+  should "validate home path for root" do
+    page = Factory.build(:page, :path => "/home")
+    assert !page.valid?
+    assert !page.root?
+  end
+  
 end

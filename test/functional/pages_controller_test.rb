@@ -1,4 +1,4 @@
-require 'test_helper'
+require_relative '../test_helper'
 
 class PagesControllerTest < ActionController::TestCase
   
@@ -25,6 +25,12 @@ class PagesControllerTest < ActionController::TestCase
     get :show, :page_path => "/about-us/services"
     assert_equal @nested_page, assigns(:page)
     assert_response :success
+  end
+    
+  should "render 404" do
+    assert_raises ActionController::RoutingError do
+      get :show, :page_path => "/a/page/that/doesnt/exist"
+    end
   end
     
 end
