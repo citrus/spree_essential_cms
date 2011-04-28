@@ -21,7 +21,14 @@ Run the generators to create the migration files.
     rails g spree_essentials:install
     rails g spree_essentials:cms
 
-Migrate your database
+Now migrate your database...
+
+    rake db:migrate
+    
+Boot your server and checkout the admin!
+
+    rails s
+    
 
 
 Change Log
