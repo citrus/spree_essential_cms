@@ -11,17 +11,17 @@ If you don't already have an existing Spree site, [click here](https://gist.gith
 
 Otherwise, follow these steps to get up and running with SpreeEssentialCms:
 
-1. Add the necessary gems to your Gemfile... they haven't been released to Rubygems yet so we'll grab them from git.
+Add the necessary gems to your Gemfile... they haven't been released to Rubygems yet so we'll grab them from git.
 
     gem 'spree_essentials',    :git => 'git://github.com/citrus/spree_essentials.git'
     gem 'spree_essential_cms', :git => 'git://github.com/citrus/spree_essential_cms.git'
 
-2. Run the generators to create the migration files.
+Run the generators to create the migration files.
 
     rails g spree_essentials:install
     rails g spree_essentials:cms
 
-3. Migrate your database
+Migrate your database
 
 
 Change Log
