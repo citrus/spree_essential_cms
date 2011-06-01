@@ -39,5 +39,5 @@ end
 if SpreeEssentialCms.independent?
   require 'spree_essential_press/custom_hooks'
 else 
-  SpreeEssentials.register :blog, SpreeEssentialCms
+  SpreeEssentials.register :cms, SpreeEssentialCms
 end
