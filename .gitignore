@@ -3,8 +3,4 @@
 .DS_Store
 Gemfile.lock
 pkg/*
-test/dummy/db/*.sqlite3
-test/dummy/log
-test/dummy/tmp
-test/dummy/public/assets
-test/dummy/public/system
+test/dummy

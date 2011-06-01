@@ -1,0 +1,1 @@
+rake "db:migrate db:seed db:sample", :env => "development"
