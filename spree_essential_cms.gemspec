@@ -22,8 +22,7 @@ Gem::Specification.new do |s|
   
   # Development
 	s.add_development_dependency('spree_sample',       '>= 0.30.0')
-	s.add_development_dependency('dummier',            '>= 0.1.0')
-	
+	s.add_development_dependency('dummier',            '>= 0.1.1')	
 	s.add_development_dependency('shoulda',            '>= 2.11.3')
 	s.add_development_dependency('factory_girl',       '>= 2.0.0.beta2')
 	s.add_development_dependency('cucumber',           '>= 0.10.2')

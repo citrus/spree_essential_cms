@@ -1,1 +1,1 @@
-rake "db:migrate db:seed db:sample", :env => "development"
+rake "db:migrate db:seed db:admin:create", :env => "development"

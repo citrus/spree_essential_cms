@@ -29,7 +29,20 @@ Boot your server and checkout the admin!
 
     rails s
     
+    
+Demo
+----
 
+You can easily use the test/dummy app as a demo of spree_essential_cms. Just `cd` to where you develop and run:
+    
+    git clone git://github.com/citrus/spree_essential_cms.git
+    cd spree_essential_cms
+    mv lib/dummy_hooks/after_migrate.rb.sample lib/dummy_hooks/after_migrate.rb
+    bundle install
+    bundle exec dummier
+    cd test/dummy
+    rails s
+    
 
 Change Log
 ----------
