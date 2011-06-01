@@ -9,8 +9,8 @@ Gem::Specification.new do |s|
   s.authors     = ["Spencer Steffen"]
   s.email       = ["spencer@citrusme.com"]
   s.homepage    = "http://github.com/citrus/spree_essential_cms"
-  s.summary     = %q{SpreeEssentialCms is a full featured content managment system for Spree Commerce.}
-  s.description = %q{Spree Essentials .....}
+  s.summary     = %q{SpreeEssentialCms is a full featured content management system for Spree Commerce.}
+  s.description = %q{SpreeEssentialCms is a full featured content management system for Spree Commerce. It's designed to be used with the spree_essentials base.}
 
   s.files        = Dir['CHANGELOG', 'README.md', 'LICENSE', 'config/**/*', 'lib/**/*', 'app/**/*', 'db/**/*', 'public/**/*', 'Rakefile']
   s.test_files   = Dir['test']
