@@ -1,4 +1,5 @@
 <% content ||= @content %>
+<% image_size ||= :medium %>
 <% html ||= false %>
 <% content_counter ||= 0 %>
 
@@ -8,7 +9,7 @@
     
     <% if content.has_image? %>
       <div class="content-left">
-        <%= image_tag content.attachment.url(:medium), :alt => content.title, :class => 'in-content' %>
+        <%= image_tag content.attachment.url(image_size), :alt => content.title, :class => 'in-content' %>
       </div>
     <% end %>
     
