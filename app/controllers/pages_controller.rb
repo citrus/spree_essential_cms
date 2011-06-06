@@ -14,7 +14,7 @@ class PagesController < Spree::BaseController
   
     def get_page
       @page = Page.active.find_by_path(page_path) rescue nil
-      return raise ActionController::RoutingError.new(page_path) unless @page
+      raise ActionController::RoutingError.new(page_path) if @page.nil?
     end
       
     def page_path
