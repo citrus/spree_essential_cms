@@ -6,15 +6,15 @@ class PageImage < Image
     has_attached_file :attachment,
       :styles => Proc.new{ |clip| clip.instance.attachment_sizes },
       :default_style => :medium,
-      :path => "assets/posts/:id/:style/:basename.:extension",
+      :path => "assets/pages/:id/:style/:basename.:extension",
       :storage => "s3",
       :s3_credentials => "#{Rails.root}/config/s3.yml"
   else
     has_attached_file :attachment,
       :styles => Proc.new{ |clip| clip.instance.attachment_sizes },
       :default_style => :medium,
-      :url => "/assets/posts/:id/:style/:basename.:extension",
-      :path => ":rails_root/public/assets/posts/:id/:style/:basename.:extension"
+      :url => "/assets/pages/:id/:style/:basename.:extension",
+      :path => ":rails_root/public/assets/pages/:id/:style/:basename.:extension"
   end 
  
   def image_content?
@@ -24,7 +24,8 @@ class PageImage < Image
   def attachment_sizes
     sizes = {}
     sizes.merge!(:mini => '48x48>', :small => '150x150>', :medium => '420x300>', :large => '900x650>') if image_content?
-    sizes.merge!(:slide => '950x250#') if viewable.respond_to?(:path) && viewable.path == "/"
+    puts viewable.inspect
+    sizes.merge!(:slide => '950x250#') if viewable.respond_to?(:root?) && viewable.root?
     sizes
   end
   

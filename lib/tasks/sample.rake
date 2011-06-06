@@ -1,17 +1,34 @@
 namespace :db do
   namespace :sample do
-    desc "creates sample pages"
-    task :cms do
-      
-      require Rails.root.join('config/environment.rb')
-      %w(Home About Contact).each do |page|
-        @page = Page.create(:title => page, :path => page == "Home" ? "/" : page)
-        @content = @page.contents.first
-        @content.body = Faker::Lorem.paragraphs(rand(4)).join("\n\n")
-        @content.save
+    desc "Create admin username and password"
+    task :cms => :environment do
+    
+      # dependent on spree_core
+      require 'faker'
+      require 'highline/import'
+    
+      continue = ask("Sample data will destroy existing data. Continue? [y/n]", String) do |q|
+        q.echo = true
+        q.whitespace = :strip
       end
-      puts "\ndone."
       
+      exit unless continue =~ /y/i
+      
+      Page.destroy_all
+      
+      images = Dir[File.expand_path("../sample", __FILE__) + "/*.jpg"]
+      
+      home = Page.create(:title => "Home", :path => "/")
+      home.contents.first.update_attributes(:body => Faker::Lorem.paragraphs().join("\n\n"))
+      images.each {|image| home.images.create(:attachment => File.open(image), :alt => "Sailing") }
+      
+      %w(About Contact).each do |title|
+        page = Page.create(:title => title, :path => title.downcase)
+        page.contents.first.update_attributes(:body => Faker::Lorem.paragraphs().join("\n\n"))
+      end
+      
+      puts "done."
+            
     end
   end
 end
