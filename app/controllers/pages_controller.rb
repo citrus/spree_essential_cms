@@ -14,12 +14,6 @@ class PagesController < Spree::BaseController
   
     def get_page
       @page = Page.includes(:images, :contents).active.find_by_path(page_path) rescue nil
-      
-      
-      puts "-----"
-      puts @page.inspect
-      puts "-----"
-      
       raise ActionController::RoutingError.new(page_path) if @page.nil?
     end
       

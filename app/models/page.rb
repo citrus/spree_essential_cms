@@ -13,12 +13,12 @@ class Page < ActiveRecord::Base
   after_create :create_default_content
   
   def self.find_by_path(_path)
-    return super('/') if _path == 'home' && Page.exists?('/')
+    return super('/') if _path == '_home_' && Page.exists?('/')
     super _path.to_s.sub(/^\/*/, '/').gsub('--', '/')
   end
   
   def to_param
-    return 'home' if path == '/'
+    return '_home_' if path == '/'
     path.sub(/^\//, '').gsub('/', '--')
   end
   
@@ -47,7 +47,7 @@ class Page < ActiveRecord::Base
   
     def set_defaults
       return if title.blank?
-      return errors.add(:path, "is reserved. Please use another") if path.to_s =~ /home/
+      #return errors.add(:path, "is reserved. Please use another") if path.to_s =~ /home/
       self.nav_title = title if nav_title.blank?
       self.path = nav_title.parameterize if path.blank?
       self.path = "/" + path.sub(/^\//, '')

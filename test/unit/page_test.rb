@@ -21,10 +21,4 @@ class PageTest < Test::Unit::TestCase
     assert !page.root?
   end
   
-  should "validate home path for root" do
-    page = Factory.build(:page, :path => "/home")
-    assert !page.valid?
-    assert !page.root?
-  end
-  
 end
