@@ -24,7 +24,6 @@ class PageImage < Image
   def attachment_sizes
     sizes = {}
     sizes.merge!(:mini => '48x48>', :small => '150x150>', :medium => '420x300>', :large => '900x650>') if image_content?
-    puts viewable.inspect
     sizes.merge!(:slide => '950x250#') if viewable.respond_to?(:root?) && viewable.root?
     sizes
   end
