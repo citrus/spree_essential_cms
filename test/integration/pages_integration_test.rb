@@ -1,9 +1,12 @@
 require_relative '../test_helper'
 
+
+
 class PagesIntegrationTest < ActiveSupport::IntegrationCase
   
   setup do
     Page.destroy_all
+    @images = Dir[File.expand_path("../../../lib/tasks/sample", __FILE__) + "/*.jpg"]
   end
   
   context "the homepage" do
@@ -12,7 +15,7 @@ class PagesIntegrationTest < ActiveSupport::IntegrationCase
       @home = Page.create(:title => "Home", :meta_title => "Welcome to our homepage!", :path => "/")
       @home.contents.first.update_attributes(:body => "This is a test", :context => "main")
       @home.contents.create(:title => "Some might say...", :body => "This is another test", :context => "intro")
-      Dir[File.expand_path("../../../lib/tasks/sample", __FILE__) + "/*.jpg"].each {
+      @images.each {
         |image| @home.images.create(:attachment => File.open(image), :alt => "Sailing")
       }
       visit root_path
@@ -46,21 +49,62 @@ class PagesIntegrationTest < ActiveSupport::IntegrationCase
   context "any other page" do
     
     setup do
-      @page = Page.create(:title => "Some Page", :path => "/some-page")
-      @page.contents.first.update_attributes(:body => "OMG it really is a page")
+      @page = Page.create(:title => "Some Page", :meta_description => "This is the description", :meta_keywords => "just, a, keyword", :path => "/some-page")
+    end
+    
+    should "have proper meta tags" do
       visit @page.path
-    end
-    
-    should "have proper page title" do
       assert_title "Spree Demo Site - Some Page"      
+      assert_meta :description, "This is the description"
+      assert_meta :keywords, "just, a, keyword"
     end
     
-    should "have proper content" do
-      within ".content-main" do
-        assert_seen "Some Page", :within => "h1.title"
-        assert_seen "OMG it really is a page", :within => "p"
+    context "with content that doesn't have an image" do
+      
+      setup do
+        @page.contents.first.update_attributes(:body => "OMG it really is a page")
       end
+      
+      should "have proper content" do
+        visit @page.path
+        within ".content-main" do
+          assert_seen "Some Page", :within => "h1.title"
+          assert_seen "OMG it really is a page", :within => "p"
+        end
+      end
+      
+      should "hide title is specified" do
+        @page.contents.first.update_attributes(:hide_title => true)
+        visit @page.path
+        within ".content-main" do
+          assert !has_selector?("h1.title")          
+          assert_seen "OMG it really is a page", :within => "p"
+        end
+      end
+      
     end
+    
+    
+    context "with content that has an image" do
+      
+      setup do
+        @content = @page.contents.first
+        @content.update_attributes(:body => "OMG it really is a page", :attachment => File.open(@images.first))
+      end
+      
+      should "have proper content" do
+        visit @page.path
+        within ".content-left" do
+          assert has_xpath?("//img[@src='#{@content.attachment.url(:medium)}']")
+        end
+        within ".content-right" do
+          assert_seen "Some Page", :within => "h1.title"
+          assert_seen "OMG it really is a page", :within => "p"
+        end
+      end
+      
+    end
+    
     
   end
     
