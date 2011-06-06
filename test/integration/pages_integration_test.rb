@@ -16,7 +16,7 @@ class PagesIntegrationTest < ActiveSupport::IntegrationCase
     
     should "have proper page title" do
       visit root_path
-      assert_title ""      
+      assert_title "Spree Demo Site - Welcome to our homepage!"      
     end
     
     should "have proper contents" do
