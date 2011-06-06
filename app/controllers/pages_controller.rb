@@ -1,4 +1,4 @@
-class PagesController < ApplicationController
+class PagesController < Spree::BaseController
   
   before_filter :get_page, :only => :show
   
