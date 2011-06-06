@@ -34,7 +34,7 @@ class Page < ActiveRecord::Base
   def has_context?(context)
     contents.where(:context => context).count
   end
-  
+    
   def matches?(_path)
     (root? && _path == "/") || (!root? && _path.match(path))
   end

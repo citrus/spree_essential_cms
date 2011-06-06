@@ -3,11 +3,11 @@ require 'spree_essentials'
 module SpreeEssentialCms
 
   def self.tab
-    [:pages, { :route => :admin_pages_index }]
+    [ :pages ]
   end
   
   def self.sub_tab
-    [:pages, { :route => :admin_pages_index, :label => 'admin.subnav.pages', :match_path => '/pages' }]
+    [ :pages, { :match_path => '/pages' }]
   end
   
   def self.independent?
