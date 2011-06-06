@@ -1,0 +1,39 @@
+/* ========================================== 
+    Main Menu
+*/
+
+ul#main-menu {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+ul#main-menu li {
+  list-style: none;
+  display: block;
+  float: left;
+  margin-right: 10px;
+  font-size: 14px;
+}
+ul#main-menu li.active a {
+  color: #fff;
+}
+
+
+/* ========================================== 
+    Slideshow
+*/
+
+body.one-col #content {
+  position: relative;
+}
+
+.slideshow img {
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+.slideshow.slide {
+  width: 950px;
+  height: 250px;
+}
