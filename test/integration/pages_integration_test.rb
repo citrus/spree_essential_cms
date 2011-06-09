@@ -1,7 +1,5 @@
 require_relative '../test_helper'
 
-
-
 class PagesIntegrationTest < ActiveSupport::IntegrationCase
   
   setup do
@@ -45,6 +43,7 @@ class PagesIntegrationTest < ActiveSupport::IntegrationCase
     end
     
   end
+  
   
   context "any other page" do
     
@@ -104,8 +103,6 @@ class PagesIntegrationTest < ActiveSupport::IntegrationCase
       end
       
     end
-    
-    
-  end
-    
+        
+  end    
 end
