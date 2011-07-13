@@ -1,5 +1,6 @@
-class Admin::ContentsController < Admin::ResourceController
+class ::Admin::ContentsController < ::Admin::ResourceController
 
+  before_filter :load_resource
   before_filter :parent, :only => :index
 
   belongs_to :page
@@ -15,10 +16,6 @@ class Admin::ContentsController < Admin::ResourceController
     end
   end
   
-  def translated_object_name
-    I18n.t('content.model_name')
-  end
-
   private
     
     def parent

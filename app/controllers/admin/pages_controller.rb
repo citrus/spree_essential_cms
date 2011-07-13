@@ -1,4 +1,4 @@
-class Admin::PagesController < Admin::ResourceController
+class ::Admin::PagesController < ::Admin::ResourceController
   
   before_filter :load_resource
   
