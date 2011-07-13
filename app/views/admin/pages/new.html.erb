@@ -6,7 +6,7 @@
 
 <h1><%= t('.new_page') %></h1>
 
-<% form_for([:admin, @page], :html => { :multipart => true }) do |f| %>
+<%= form_for([:admin, @page], :html => { :multipart => true }) do |f| %>
   <%= render "form", :form => f %>
 
   <p class="form-buttons">

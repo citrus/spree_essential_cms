@@ -10,7 +10,6 @@ class Admin::PageImagesController < Admin::ResourceController
     params[:positions].each do |id, index|
       PageImage.update_all(['position=?', index], ['id=?', id])
     end
-
     respond_to do |format|
       format.js  { render :text => 'Ok' }
     end

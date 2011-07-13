@@ -15,7 +15,7 @@ class Page < ActiveRecord::Base
   after_create :create_default_content
   
   def self.find_by_path(_path)
-    return super('/') if _path == '_home_' && Page.exists?('/')
+    return super('/') if _path == '_home_' && Page.exists?(:path => '/')
     super _path.to_s.sub(/^\/*/, '/').gsub('--', '/')
   end
   

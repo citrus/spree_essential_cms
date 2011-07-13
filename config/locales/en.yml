@@ -1,5 +1,6 @@
 en:
   page: 
+    model_name: Page
     contents: Contents
     title: Title
     nav_title: Navigation Title    
@@ -13,6 +14,7 @@ en:
     explain_visible: visible pages will show up in the main menu.
     
   content:
+    model_name: Content
     page_title: Page Title
     page: Page
     title: Title

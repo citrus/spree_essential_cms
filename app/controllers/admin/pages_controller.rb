@@ -1,38 +1,39 @@
-class Admin::PagesController < Admin::BaseController
-  resource_controller
-
-  create.response do |wants|
-    wants.html { redirect_to edit_admin_page_content_path(@page, @page.contents.first) }
+class Admin::PagesController < Admin::ResourceController
+  
+  def translated_object_name
+    I18n.t('page.model_name')
   end
-
-  update.response do |wants|
-    wants.html { redirect_to object_url }
+  
+  def location_after_save
+    case params[:action]
+      when "create"
+        edit_admin_page_content_path(@page, @page.contents.first)
+      else
+        admin_page_path(@page)
+    end        
   end
-
-  destroy.success.wants.js { render_js_for_destroy }
 
   def update_positions
     params[:positions].each do |id, index|
       Page.update_all(['position=?', index], ['id=?', id])
     end
-    
     respond_to do |format|
-      format.html { redirect_to admin_pages_url }
+      format.html { redirect_to admin_pages_path }
       format.js  { render :text => 'Ok' }
     end
   end
 
   private
   
-    def object
-      @object ||= Page.find_by_path(params[:id])
+    def find_resource
+      @page ||= Page.find_by_path(params[:id])
     end
   
     def collection
       params[:search] ||= {}
       params[:search][:meta_sort] ||= "page.asc"
-      @search = end_of_association_chain.metasearch(params[:search])
-      @collection = @search.order(:position).paginate(:per_page => Spree::Config[:orders_per_page], :page => params[:page])
+      @search = Page.metasearch(params[:search])
+      @collection = @search.paginate(:per_page => Spree::Config[:orders_per_page], :page => params[:page])
     end
 
 end
