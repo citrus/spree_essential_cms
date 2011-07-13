@@ -20,6 +20,12 @@
 
 <div class="optional" style="display: none;">
 
+  <%= form.field_container :context do %>
+    <%= form.label :context, t('content.context') %><br />
+    <%= form.text_field :context, :class => "text"  %>
+    <%= error_message_on :content, :context %>
+  <% end %>
+
   <%= form.field_container :attachment do %>
     <%= form.label :attachment, t('content.attachment') %><br />
     <%= form.file_field :attachment %>
@@ -42,12 +48,6 @@
     <%= error_message_on :content, :link_text %>
   <% end %>
   
-  <%= form.field_container :context do %>
-    <%= form.label :context, t('content.context') %><br />
-    <%= form.text_field :context, :class => "text"  %>
-    <%= error_message_on :content, :context %>
-  <% end %>
-
   <%= form.field_container :hide_title do %>
     <%= form.check_box :hide_title, :class => "checkbox"  %>
     <%= form.label :hide_title, t('content.hide_title') %><br />

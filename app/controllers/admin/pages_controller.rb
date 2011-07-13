@@ -1,8 +1,6 @@
 class Admin::PagesController < Admin::ResourceController
   
-  def translated_object_name
-    I18n.t('page.model_name')
-  end
+  before_filter :load_resource
   
   def location_after_save
     case params[:action]

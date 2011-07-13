@@ -27,6 +27,7 @@ class Admin::PagesIntegrationTest < ActiveSupport::IntegrationCase
     
   should "validate page" do
     visit new_admin_page_path
+    sleep 10
     click_button "Create"
     within "#errorExplanation" do
       assert_seen "2 errors prohibited this record from being saved:"
