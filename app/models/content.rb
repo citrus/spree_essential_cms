@@ -4,6 +4,7 @@ class Content < ActiveRecord::Base
   validates_associated :page
   validates_presence_of :title
 
+  default_scope order(:position)
   
   if defined?(SpreeHeroku)
     has_attached_file :attachment,

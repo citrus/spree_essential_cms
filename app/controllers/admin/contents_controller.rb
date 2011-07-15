@@ -6,7 +6,7 @@ class ::Admin::ContentsController < ::Admin::ResourceController
   belongs_to :page
 
   def update_positions
-    @page = parent_object
+    @page = parent
     params[:positions].each do |id, index|
       @page.contents.update_all(['position=?', index], ['id=?', id])
     end

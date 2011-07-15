@@ -2,6 +2,10 @@ class ::Admin::PagesController < ::Admin::ResourceController
   
   before_filter :load_resource
   
+  def index
+    @pages = collection
+  end
+  
   def location_after_save
     case params[:action]
       when "create"
