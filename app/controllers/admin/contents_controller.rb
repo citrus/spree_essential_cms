@@ -2,9 +2,11 @@ class ::Admin::ContentsController < ::Admin::ResourceController
 
   before_filter :load_resource
   before_filter :parent, :only => :index
+  
+  before_filter :get_pages, :only => [ :new, :edit, :create, :update ]
 
   belongs_to :page
-
+  
   def update_positions
     @page = parent
     params[:positions].each do |id, index|
@@ -17,6 +19,10 @@ class ::Admin::ContentsController < ::Admin::ResourceController
   end
   
   private
+    
+    def get_pages
+      @pages = Page.order(:position).all
+    end
     
     def parent
 	    @page ||= Page.find_by_path(params[:page_id])
