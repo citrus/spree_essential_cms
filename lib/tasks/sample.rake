@@ -22,7 +22,9 @@ namespace :db do
       home.contents.first.update_attributes(:body => Faker::Lorem.paragraphs().join("\n\n"), :context => "main")
       home.contents.create(:title => Faker::Lorem.words(3 + rand(3)).join(" "), :body => Faker::Lorem.sentence, :context => "intro")
       
-      images.each {|image| home.images.create(:attachment => File.open(image), :alt => "Sailing") }
+      images.each {|image| 
+        PageImage.create(:viewable => home, :attachment => File.open(image), :alt => "Sailing") 
+      }
       
       %w(About Contact).each do |title|
         page = Page.create(:title => title, :path => title.downcase)

@@ -43,9 +43,12 @@ class Admin::PagesIntegrationTest < ActiveSupport::IntegrationCase
       end
     end
     click_button "Create"
-    assert_equal admin_page_content_path(@page, @page.contents.first), current_path    
+    @page = Page.last
+    puts @page
+    puts assigns(:page)
+    assert_equal admin_page_content_path(@page, @page.contents.first), current_path
     assert_flash :notice, %(Page "Just a page" has been successfully created!)
-  end  
+  end
   
   context "an existing page" do    
     setup do

@@ -1,1 +1,1 @@
-copy_file 'spree_application.html.erb', 'app/views/layouts/spree_application.html.erb'
+copy_file 'main_menu.rb', 'app/overrides/main_menu.rb'
