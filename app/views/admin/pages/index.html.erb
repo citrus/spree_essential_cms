@@ -47,16 +47,11 @@
 
   <% @page = Page.metasearch %>
   <%= form_for [:admin, @page] do |f| %>
-    <%- locals = {:f => f} %>
-    <%= hook :admin_pages_index_search, locals do %>
-      <p>
-        <label><%= t '.title_contains' %></label><br />
-        <%= f.text_field :title_contains, :size => 25 %>
-      </p>      
-    <% end %>
-    <%= hook :admin_pages_index_search_buttons, locals do %>
-      <p><%= button t("search") %></p>
-    <% end %>
+    <p>
+      <label><%= t '.title_contains' %></label><br />
+      <%= f.text_field :title_contains, :size => 25 %>
+    </p>      
+    <p><%= button t("search") %></p>
   <% end %>
 </div>
 <% end %>

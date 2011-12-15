@@ -44,16 +44,11 @@
 
   <% @content = Content.metasearch %>
   <%= form_for [:admin, @page, @content] do |f| %>
-    <%- locals = {:f => f} %>
-    <%= hook :admin_contents_index_search, locals do %>
-      <p>
-        <label><%= t('content.title') %></label><br />
-        <%= f.text_field :title_like, :size => 25 %>
-      </p>      
-    <% end %>
-    <%= hook :admin_contents_index_search_buttons, locals do %>
-      <p><%= button t("search") %></p>
-    <% end %>
+    <p>
+      <label><%= t('content.title') %></label><br />
+      <%= f.text_field :title_like, :size => 25 %>
+    </p>      
+    <p><%= button t("search") %></p>
   <% end %>
 </div>
 <% end %>

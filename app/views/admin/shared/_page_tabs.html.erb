@@ -6,17 +6,15 @@
   <br clear="clear" />
 
   <ul class="sidebar post-menu">
-    <%= hook :admin_page_tabs, {:current => current} do %>
-      <li<%== ' class="active"' if current == t('.page_details') %>>
-        <%= link_to t('.page_details'), edit_admin_page_url(@page) %>
-      </li>      
-      <li<%== ' class="active"' if current == "Contents" %>>
-        <%= link_to t('.contents'), admin_page_contents_url(@page) %>
-      </li>    
-      <li<%== ' class="active"' if current == "Images" %>>
-        <%= link_to t('.images'), admin_page_images_url(@page) %>
-      </li>    
-    <% end %>
+    <li<%== ' class="active"' if current == t('.page_details') %>>
+      <%= link_to t('.page_details'), edit_admin_page_url(@page) %>
+    </li>      
+    <li<%== ' class="active"' if current == "Contents" %>>
+      <%= link_to t('.contents'), admin_page_contents_url(@page) %>
+    </li>    
+    <li<%== ' class="active"' if current == "Images" %>>
+      <%= link_to t('.images'), admin_page_images_url(@page) %>
+    </li>    
   </ul>
   <br clear="clear" />
 
