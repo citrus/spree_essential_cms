@@ -1,7 +1,4 @@
-SpreeEssentialCms
-=================
-
-SpreeEssentialCms is a full featured CMS for managing pages and content on your [Spree](http://spreecommerce.com) site.
+# Spree Essential CMS [![Build Status](https://secure.travis-ci.org/citrus/spree_essential_cms.png)](http://travis-ci.org/citrus/spree_essential_cms)
 
 
 Installation
@@ -11,17 +8,20 @@ If you don't already have an existing Spree site, [click here](https://gist.gith
 
 Otherwise, follow these steps to get up and running with SpreeEssentialCms:
 
-Add the necessary gems to your Gemfile... they haven't been released to Rubygems yet so we'll grab them from git.
+Add spree_essential_cms to your Gemfile:
 
-    gem 'spree_essentials',    :git => 'git://github.com/citrus/spree_essentials.git'
-    gem 'spree_essential_cms', :git => 'git://github.com/citrus/spree_essential_cms.git'
+    gem 'spree_essential_cms', '>= 0.2.0'
 
-Run the generators to create the migration files.
+Now, bundle up with:
+
+    bundle install
+
+Then run the generators to create the migration files:
 
     rails g spree_essentials:install
     rails g spree_essentials:cms
 
-Now migrate your database...
+Now migrate your database:
 
     rake db:migrate
     
@@ -113,6 +113,12 @@ You can easily use the test/dummy app as a demo of spree_essential_cms. Just `cd
 Change Log
 ----------
 
+**0.2.0 - 2011/12/15**
+
+* Add 0.70.x compatibility
+* Removed spork dev dependency
+
+
 **0.1.1 - 2011/6/2**
 
 * Added the image_size option `shared/_content.html.erb`
@@ -154,4 +160,4 @@ If you'd like to help out feel free to fork and send me pull requests!
 License
 -------
 
-Copyright (c) 2011 Spencer Steffen, released under the New BSD License All rights reserved.
+Copyright (c) 2011 Spencer Steffen & Citrus, released under the New BSD License All rights reserved.
