@@ -2,7 +2,7 @@ class Content < ActiveRecord::Base
   
   belongs_to :page
   validates_associated :page
-  validates_presence_of :title
+  validates_presence_of :title, :page
 
   default_scope order(:position)
   

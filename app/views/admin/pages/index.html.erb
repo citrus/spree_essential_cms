@@ -39,7 +39,7 @@
   </tbody>
 </table>
 
-<%= will_paginate(:prev => "&#171; #{t('previous')}", :next => "#{t('next')} &#187;") %>
+<%= paginate @collection %>
 
 <% content_for :sidebar do %>
 <div class="box">
