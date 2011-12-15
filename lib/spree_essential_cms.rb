@@ -3,41 +3,31 @@ require 'spree_essentials'
 module SpreeEssentialCms
 
   def self.tab
-    [ :pages ]
+    { :label => "Pages", :route => :admin_pages }
   end
   
   def self.sub_tab
     [ :pages, { :match_path => '/pages' }]
   end
   
-  def self.independent?
-    return true unless defined?(SpreeEssentials)
-    !SpreeEssentials.respond_to?(:register)
-  end
-  
   class Engine < Rails::Engine
+    
     config.autoload_paths += %W(#{config.root}/lib)    
     
-    initializer "static assets" do |app|
-      app.middleware.insert_before ::Rack::Lock, ::ActionDispatch::Static, "#{config.root}/public"
-    end
-    
-    def self.activate
-      
-      Dir.glob(File.join(File.dirname(__FILE__), "../app/**/*_decorator.rb")) do |c|
-        Rails.env.production? ? require(c) : load(c)
+    config.to_prepare do
+      #loads application's model / class decorators
+      Dir.glob File.expand_path("../../app/**/*_decorator*.rb") do |c|
+        Rails.configuration.cache_classes ? require(c) : load(c)
       end
-      
-    end
 
-    config.to_prepare &method(:activate).to_proc
+      #loads application's deface view overrides
+      Dir.glob File.expand_path("../../app/overrides/*.rb", __FILE__) do |c|
+        Rails.application.config.cache_classes ? require(c) : load(c)
+      end
+    end
     
   end
   
 end
 
-if SpreeEssentialCms.independent?
-  require 'spree_essential_press/custom_hooks'
-else 
-  SpreeEssentials.register :cms, SpreeEssentialCms
-end
+SpreeEssentials.register :cms, SpreeEssentialCms
