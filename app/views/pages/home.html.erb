@@ -16,7 +16,7 @@
   <% if defined?(SpreeEssentialBlog) && !@posts.blank? %>
     <div class="home-posts">
       <h1><%= t('blog.home.title') %></h1>
-      <%= render :partial => 'blog/posts/preview', :collection => @posts, :as => :post %>
+      <%= render :partial => 'blog/shared/preview', :collection => @posts, :as => :post %>
     </div>
   <% end %>
   <% if defined?(SpreeEssentialNews) && !@articles.blank? %>

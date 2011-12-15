@@ -10,7 +10,7 @@ Otherwise, follow these steps to get up and running with SpreeEssentialCms:
 
 Add spree_essential_cms to your Gemfile:
 
-    gem 'spree_essential_cms', '>= 0.2.0'
+    gem 'spree_essential_cms', '>= 0.2.1'
 
 Now, bundle up with:
 
@@ -112,6 +112,11 @@ You can easily use the test/dummy app as a demo of spree_essential_cms. Just `cd
 
 Change Log
 ----------
+
+**0.2.1 - 2011/12/15**
+
+* Fixes missing partial error on homepage when used with SpreeEssentialBlog
+
 
 **0.2.0 - 2011/12/15**
 
