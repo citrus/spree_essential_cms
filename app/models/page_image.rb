@@ -1,21 +1,10 @@
-class PageImage < Image
+class PageImage < Asset
 
   validate :no_attachement_errors
 
-  if defined?(SpreeHeroku)
-    has_attached_file :attachment,
-      :styles => Proc.new{ |clip| clip.instance.attachment_sizes },
-      :default_style => :medium,
-      :path => "assets/pages/:id/:style/:basename.:extension",
-      :storage => "s3",
-      :s3_credentials => "#{Rails.root}/config/s3.yml"
-  else
-    has_attached_file :attachment,
-      :styles => Proc.new{ |clip| clip.instance.attachment_sizes },
-      :default_style => :medium,
-      :url => "/assets/pages/:id/:style/:basename.:extension",
-      :path => ":rails_root/public/assets/pages/:id/:style/:basename.:extension"
-  end 
+  has_attached_file :attachment,
+    :styles => Proc.new{ |clip| clip.instance.attachment_sizes },
+    :default_style => :medium
  
   def image_content?
     attachment_content_type.match(/\/(jpeg|png|gif|tiff|x-photoshop)/)
