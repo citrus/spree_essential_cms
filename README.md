@@ -11,10 +11,10 @@ If you don't already have an existing Spree site, [click here](https://gist.gith
 
 Otherwise, follow these steps to get up and running with SpreeEssentialCms:
 
-Add the necessary gems to your Gemfile... they haven't been released to Rubygems yet so we'll grab them from git.
+Add the necessary gems to your Gemfile:
 
-    gem 'spree_essentials',    :git => 'git://github.com/citrus/spree_essentials.git'
-    gem 'spree_essential_cms', :git => 'git://github.com/citrus/spree_essential_cms.git'
+    gem 'spree_essentials',    '~> 0.2.3'
+    gem 'spree_essential_cms', '~> 0.1.2'
 
 Run the generators to create the migration files.
 
@@ -33,11 +33,6 @@ Boot your server and checkout the admin!
 
 Usage
 -----
-
-[todo] add basic usage stuff here
-
-
-### Here's some tips for making content really customized...
 
 
 #### Contexts
@@ -112,6 +107,11 @@ You can easily use the test/dummy app as a demo of spree_essential_cms. Just `cd
 
 Change Log
 ----------
+
+**0.1.2 - 2012/1/6**
+
+* Removed automatic attachment config with SpreeHeroku 
+
 
 **0.1.1 - 2011/6/2**
 
