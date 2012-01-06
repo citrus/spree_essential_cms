@@ -43,7 +43,7 @@ class Admin::PagesIntegrationTest < ActiveSupport::IntegrationCase
       end
     end
     click_button "Create"
-    assert_equal admin_page_content_path(@page, @page.contents.first), current_path    
+    assert_equal edit_admin_page_content_path(Page.last, Content.last), current_path    
     assert_flash :notice, %(Page "Just a page" has been successfully created!)
   end  
   

@@ -6,20 +6,9 @@ class Content < ActiveRecord::Base
 
   default_scope order(:position)
   
-  if defined?(SpreeHeroku)
-    has_attached_file :attachment,
-      :styles => Proc.new{ |clip| clip.instance.attachment_sizes },
-      :default_style => :preview,
-      :path => "assets/contents/:id/:style/:basename.:extension",
-      :storage => "s3",
-      :s3_credentials => "#{Rails.root}/config/s3.yml"
-  else
-    has_attached_file :attachment,
-      :styles => Proc.new{ |clip| clip.instance.attachment_sizes },
-      :default_style => :preview,
-      :url => "/assets/contents/:id/:style/:basename.:extension",
-      :path => ":rails_root/public/assets/contents/:id/:style/:basename.:extension"
-  end
+  has_attached_file :attachment,
+    :styles => Proc.new{ |clip| clip.instance.attachment_sizes },
+    :default_style => :preview
   
   
   cattr_reader :per_page

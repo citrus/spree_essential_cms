@@ -18,11 +18,11 @@ Gem::Specification.new do |s|
   s.require_paths = ['lib']
 
   # Spree Essentials
-  s.add_dependency('spree_essentials',               '>= 0.2.0')
+  s.add_dependency('spree_essentials',               '~> 0.2.0')
   
   # Development
-	s.add_development_dependency('spree_sample',       '>= 0.60.0')
-	s.add_development_dependency('dummier',            '>= 0.2.0')	
+	s.add_development_dependency('spree_sample',       '~> 0.60.0')
+	s.add_development_dependency('dummier',            '>= 0.2.4')	
 	s.add_development_dependency('shoulda',            '>= 2.11.3')
 	s.add_development_dependency('factory_girl',       '>= 2.0.0.beta4')
 	s.add_development_dependency('capybara',           '>= 1.0.0')
