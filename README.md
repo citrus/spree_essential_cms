@@ -163,7 +163,9 @@ To Do
 Contributors
 ------------
 
-So far it's just me; Spencer Steffen.
+* Spencer Steffen ([@citrus](https://github.com/citrus))
+* Kyle West ([@kylewest](https://github.com/kylewest))
+
 
 If you'd like to help out feel free to fork and send me pull requests!
 
