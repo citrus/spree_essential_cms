@@ -10,25 +10,34 @@ Otherwise, follow these steps to get up and running with SpreeEssentialCms:
 
 Add spree_essential_cms to your Gemfile:
 
-    gem 'spree_essential_cms', '>= 0.2.1'
+```ruby
+gem 'spree_essential_cms', '>= 0.2.1'
+```
 
 Now, bundle up with:
 
-    bundle install
+```bash
+bundle install
+```
 
 Then run the generators to create the migration files:
 
-    rails g spree_essentials:install
-    rails g spree_essentials:cms
+```bash
+bundle exec rails g spree_essentials:install
+bundle exec rails g spree_essentials:cms
+```
 
 Now migrate your database:
 
-    rake db:migrate
-    
-Boot your server and checkout the admin!
+```bash
+bundle exec rake db:migrate
+```
 
-    rails s
-    
+Boot your server and checkout the admin at `localhost:3000/admin`!
+
+```bash
+bundle exec rails s
+```
 
 
 Usage
@@ -48,67 +57,64 @@ You can set a content's context (say that ten times fast!) under the 'Optional F
 
 In your view you'll be able to grab those bits of content like so:
 
-    
-    .slideshow
-      - if @slides = @page.for_context('slideshow')
-        = render 'shared/content', :content => @slides
-    
-    - if @sidebar = @page.for_context('sidebar').first
-      - content_for :sidebar do
-        = render 'shared/your_custom_sidebar', :content => @sidebar  
+```haml
+.slideshow
+  - if @slides = @page.for_context('slideshow')
+    = render 'shared/content', :content => @slides
 
-
+- if @sidebar = @page.for_context('sidebar').first
+  - content_for :sidebar do
+    = render 'shared/your_custom_sidebar', :content => @sidebar
+```
 
 
 #### Custom image sizes
 
 Use a content decorator when you want different contexts to have their own image sizes:
 
+```ruby
+Content.class_eval do
 
-    Content.class_eval do 
-    
-      # override default image sizes
-      def default_attachment_sizes
-        { :mini => '48x48>', :medium => '427x287>' }
-      end
-      
-      # or set a custom size for each context
-      def attachment_sizes
-        case context
-          when 'slideshow'
-            sizes = default_attachment_sizes.merge(:slide => '955x476#')
-          when 'main'
-            sizes = default_attachment_sizes.merge(:custom => '580x289#')
-          when 'small-top'
-            sizes = default_attachment_sizes.merge(:custom => '364x177#')
-          when 'small-bottom'
-            sizes = default_attachment_sizes.merge(:custom => '364x109#') 
-          else
-            sizes = default_attachment_sizes
-        end
-        sizes
-      end
-    
+  # override default image sizes
+  def default_attachment_sizes
+    { :mini => '48x48>', :medium => '427x287>' }
+  end
+
+  # or set a custom size for each context
+  def attachment_sizes
+    case context
+      when 'slideshow'
+        sizes = default_attachment_sizes.merge(:slide => '955x476#')
+      when 'main'
+        sizes = default_attachment_sizes.merge(:custom => '580x289#')
+      when 'small-top'
+        sizes = default_attachment_sizes.merge(:custom => '364x177#')
+      when 'small-bottom'
+        sizes = default_attachment_sizes.merge(:custom => '364x109#')
+      else
+        sizes = default_attachment_sizes
     end
+    sizes
+  end
+
+end
+```
 
 
-
-
-
-    
 Demo
 ----
 
 You can easily use the test/dummy app as a demo of spree_essential_cms. Just `cd` to where you develop and run:
-    
-    git clone git://github.com/citrus/spree_essential_cms.git
-    cd spree_essential_cms
-    mv lib/dummy_hooks/after_migrate.rb.sample lib/dummy_hooks/after_migrate.rb
-    bundle install
-    bundle exec dummier
-    cd test/dummy
-    rails s
-    
+
+```bash
+git clone git://github.com/citrus/spree_essential_cms.git
+cd spree_essential_cms
+cp test/dummy_hooks/after_migrate.rb.sample test/dummy_hooks/after_migrate.rb
+bundle install
+bundle exec dummier
+cd test/dummy
+bundle exec rails s
+```
 
 Change Log
 ----------
@@ -157,7 +163,7 @@ To Do
 Contributors
 ------------
 
-So far it's just me; Spencer Steffen. 
+So far it's just me; Spencer Steffen.
 
 If you'd like to help out feel free to fork and send me pull requests!
 
