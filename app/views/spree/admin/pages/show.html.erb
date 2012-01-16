@@ -1,0 +1,23 @@
+<%= render :partial => 'spree/admin/shared/contents_sub_menu' %>
+
+<%= render :partial => 'spree/admin/shared/page_tabs', :locals => {:current => "Page Details"} %>
+
+<h3>Meta Data:</h3>
+<p>
+  <b><%= t('page.meta_title') %>:</b> <%= @page.meta_title %><br/>
+  <b><%= t('page.meta_description') %>:</b> <%= @page.meta_description %><br/>
+  <b><%= t('page.meta_keywords') %>:</b> <%= @page.meta_keywords %>
+</p>
+
+<hr/>
+
+<% @page.contents.each do |content| %>
+  
+  <%= content.title %>
+  
+<% end %>
+
+<p>
+  <%= link_to_edit @page %> &nbsp;
+  <%= link_to t('back'), collection_url %>
+</p>

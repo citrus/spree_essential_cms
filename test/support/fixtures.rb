@@ -8,7 +8,7 @@ FactoryGirl.define do
   end
   
   factory :content do
-    page { Page.first }
+    page { Spree::Page.first }
     title "Just some content"
     body  { "Nothing too cool here except the title: #{title}." }
   end

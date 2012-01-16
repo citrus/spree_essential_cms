@@ -10,6 +10,7 @@ module SpreeEssentials
       def copy_migrations
         migration_template "create_pages.rb",    "db/migrate/create_pages.rb"
         migration_template "create_contents.rb", "db/migrate/create_contents.rb"
+        migration_template "add_spree_namespace.rb", "db/migrate/add_spree_namespace.rb"
       end
 
     end
