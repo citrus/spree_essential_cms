@@ -1,7 +1,7 @@
 <%= render :partial => 'spree/admin/shared/contents_sub_menu' %>
 
 <% if @page.try(:errors).present? %>
-  <%= render 'shared/error_messages', :target => @page %>
+  <%= render 'spree/shared/error_messages', :target => @page %>
 <% end %>
 
 <h1><%= t('.new_page') %></h1>

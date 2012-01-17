@@ -3,7 +3,7 @@
 <%= render :partial => 'spree/admin/shared/page_tabs', :locals => {:current => "Images"} %>
 
 <% if @page_image.try(:errors).present? %>
-  <%= render 'shared/error_messages', :target => @page_image %>
+  <%= render 'spree/shared/error_messages', :target => @page_image %>
 <% end %>
 
 <%= form_for([:admin, @page.id, @page_image], :url => admin_page_image_url(@page, @page_image), :html => { :multipart => true }) do |f| %>

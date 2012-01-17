@@ -3,7 +3,7 @@
 <%= render :partial => 'spree/admin/shared/page_tabs', :locals => {:current => 'Contents'} %>
 
 <% if @content.try(:errors).present? %>
-  <%= render 'shared/error_messages', :target => @content %>
+  <%= render 'spree/shared/error_messages', :target => @content %>
 <% end %>
 
 <h2><%= t('.edit_content') %></h2>

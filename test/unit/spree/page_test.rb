@@ -12,12 +12,12 @@ class Spree::PageTest < Test::Unit::TestCase
   should have_many(:images).dependent(:destroy)
   
   should "return true if root" do
-    page = Factory.create(:page, :path => "/")
+    page = Factory.create(:spree_page, :path => "/")
     assert page.root?
   end
   
   should "return false unless root" do
-    page = Factory.create(:page, :path => "/another")
+    page = Factory.create(:spree_page, :path => "/another")
     assert !page.root?
   end
   

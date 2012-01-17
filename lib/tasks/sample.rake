@@ -19,7 +19,7 @@ namespace :db do
       images = Dir[File.expand_path("../sample", __FILE__) + "/*.jpg"]
       
       home = Page.create(:title => "Home", :path => "/")
-      home.contents.first.update_attributes(:body => Faker::Lorem.paragraphs().join("\n\n"), :context => "main")
+      home.contents.first.update_attributes(:body => FFaker::Lorem.paragraphs().join("\n\n"), :context => "main")
       home.contents.create(:title => Faker::Lorem.words(3 + rand(3)).join(" "), :body => Faker::Lorem.sentence, :context => "intro")
       
       images.each {|image| 

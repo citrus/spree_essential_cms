@@ -3,7 +3,7 @@
 <%= render :partial => 'spree/admin/shared/page_tabs', :locals => {:current => 'Page Details'} %>
 
 <% if @page.try(:errors).present? %>
-  <%= render 'shared/error_messages', :target => @page %>
+  <%= render 'spree/shared/error_messages', :target => @page %>
 <% end %>
 
 <%= form_for([:admin, @page]) do |f| %>

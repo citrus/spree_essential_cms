@@ -27,31 +27,33 @@ en:
   
   pages: Pages
   
-  admin:
-    subnav:
-      pages: Pages
-    shared:
-      contents_tab:
-        content: Content
-      page_tabs:
-        editing_page: Editing Page
-        page_details: Page Details
-        contents: Contents
-        images: Images
-    pages:
-      index:
-        title: Title
-        listing_pages: Listing Pages
-        new_page: New Page        
-        title_contains: Title        
-      new: 
-        new_page: New Page
-        
-    contents:
-      index:
-        new_content: New Content
-        listing_contents: Listing Contents
-      new:
-        new_content: New Content
-      edit:
-        edit_content: Edit Content
+  
+  spree:
+    admin:
+      subnav:
+        pages: Pages
+      shared:
+        contents_tab:
+          content: Content
+        page_tabs:
+          editing_page: Editing Page
+          page_details: Page Details
+          contents: Contents
+          images: Images
+      pages:
+        index:
+          title: Title
+          listing_pages: Listing Pages
+          new_page: New Page        
+          title_contains: Title        
+        new: 
+          new_page: New Page
+          
+      contents:
+        index:
+          new_content: New Content
+          listing_contents: Listing Contents
+        new:
+          new_content: New Content
+        edit:
+          edit_content: Edit Content

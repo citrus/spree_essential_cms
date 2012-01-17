@@ -3,8 +3,8 @@ require 'test_helper'
 class Spree::Admin::ContentsIntegrationTest < ActiveSupport::IntegrationCase
 
   setup do
-    Content.destroy_all
-    @page = Spree::Page.first || Factory.create(:page)
+    Spree::Content.destroy_all
+    @page = Spree::Page.first || Factory.create(:spree_page)
   end
   
   should "have a link to new content" do
@@ -17,7 +17,7 @@ class Spree::Admin::ContentsIntegrationTest < ActiveSupport::IntegrationCase
   should "get new content" do  
     visit new_admin_page_content_path(@page)
     assert has_content?("New Content")
-    within "#new_content" do
+    within "#new_spree_content" do
       assert has_field?("Title")
       assert has_field?("Page")
       assert has_field?("Body")   
@@ -40,7 +40,7 @@ class Spree::Admin::ContentsIntegrationTest < ActiveSupport::IntegrationCase
   
   should "create some content" do
     visit new_admin_page_content_path(@page)
-    within "#new_content" do
+    within "#new_spree_content" do
       fill_in "Title", :with => "Just some content"
       select @page.title, :from => "Page"
       fill_in "Body",  :with => "Just some words in the content..."
@@ -52,12 +52,12 @@ class Spree::Admin::ContentsIntegrationTest < ActiveSupport::IntegrationCase
   
   context "existing content" do    
     setup do
-      @content = Factory.create(:content, :page => @page)
+      @content = Factory.create(:spree_content, :page => @page)
     end
     
     should "edit and update" do
       visit edit_admin_page_content_path(@page, @content)      
-      within "#edit_content_#{@content.id}" do
+      within "#edit_spree_content_#{@content.id}" do
         fill_in "Title", :with => "Just some content"
         select @page.title, :from => "Page"
         fill_in "Body",  :with => "Just some words in the content..."

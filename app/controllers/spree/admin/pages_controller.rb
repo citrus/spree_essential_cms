@@ -1,4 +1,5 @@
 class Spree::Admin::PagesController < Spree::Admin::ResourceController
+  
   before_filter :load_resource
 
   def index
@@ -27,7 +28,7 @@ class Spree::Admin::PagesController < Spree::Admin::ResourceController
   private
 
     def find_resource
-      @page ||= Spree::Page.find_by_path(params[:id])
+      @page ||= ::Spree::Page.find_by_path(params[:id])
     end
 
     def collection

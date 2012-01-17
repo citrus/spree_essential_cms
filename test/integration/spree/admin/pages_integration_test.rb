@@ -18,7 +18,7 @@ class Spree::Admin::PagesIntegrationTest < ActiveSupport::IntegrationCase
   should "get new page" do  
     visit new_admin_page_path
     assert has_content?("New Page")
-    within "#new_page" do
+    within "#new_spree_page" do
       @labels.each do |f|
         assert has_field?(f)
       end
@@ -37,26 +37,26 @@ class Spree::Admin::PagesIntegrationTest < ActiveSupport::IntegrationCase
   
   should "create a page" do
     visit new_admin_page_path
-    within "#new_page" do
+    within "#new_spree_page" do
       @labels.each_with_index do |label, index|
       	fill_in label, :with => @values[index]      
       end
     end
     click_button "Create"
-    @page = Page.last
+    @page = Spree::Page.last
     assert_equal edit_admin_page_content_path(@page, @page.contents.first), current_path
     assert_flash :notice, %(Page "Just a page" has been successfully created!)
   end
   
   context "an existing page" do    
     setup do
-      @page = Factory.create(:page)
+      @page = Factory.create(:spree_page)
     end
     
     should "edit and update" do
       visit edit_admin_page_path(@page)
       
-      within "#edit_page_#{@page.id}" do
+      within "#edit_spree_page_#{@page.id}" do
         @labels.each_with_index do |label, index|
           next if label == 'Pageed At'
         	fill_in label, :with => @values[index].reverse      

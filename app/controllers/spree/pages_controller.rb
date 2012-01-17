@@ -1,11 +1,12 @@
 class Spree::PagesController < Spree::BaseController
+  
   before_filter :get_page, :only => :show
 
   def show
     if @page.root?
       @posts    = Spree::Post.live.limit(5)    if SpreeEssentials.has?(:blog)
       @articles = Spree::Article.live.limit(5) if SpreeEssentials.has?(:news)
-      render :template => 'pages/home'
+      render :template => 'spree/pages/home'
     end
   end
 
@@ -17,7 +18,7 @@ class Spree::PagesController < Spree::BaseController
     end
 
     def page_path
-      params[:page_path] || "/"
+      params[:page_path].blank? ? "/" : params[:page_path]
     end
 
     def accurate_title
