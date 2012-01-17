@@ -112,7 +112,7 @@ end
 Demo
 ------------------------------------------------------------------------------
 
-You can easily use the test/dummy app as a demo of spree_essential_cms. Just `cd` to where you develop and run:
+You can easily use the `test/dummy` app as a demo of spree_essential_cms. Just `cd` to where you develop and run:
 
 ```bash
 git clone git://github.com/citrus/spree_essential_cms.git
@@ -123,6 +123,30 @@ bundle exec dummier
 cd test/dummy
 bundle exec rails s
 ```
+
+
+------------------------------------------------------------------------------
+Testing
+------------------------------------------------------------------------------
+
+Testing for spree_essential_cms is done with unit tests and capybara integration tests. To get setup, run the commands below:
+
+```bash
+git clone git://github.com/citrus/spree_essential_cms.git
+cd spree_essential_cms
+bundle install
+bundle exec dummier
+```
+
+
+Now you've got a test app setup in `test/dummy`. Now you can run the tests with:
+
+```bash
+bundle exec rake
+```
+
+
+If for any reason you want to re-create your `test/dummy` app, just re-run `bundle exec dummier`.
 
 
 ------------------------------------------------------------------------------
