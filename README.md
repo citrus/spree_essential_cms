@@ -1,8 +1,11 @@
 # Spree Essential CMS [![Build Status](https://secure.travis-ci.org/citrus/spree_essential_cms.png)](http://travis-ci.org/citrus/spree_essential_cms)
 
+A robust CMS for Spree Commerce.
 
+
+------------------------------------------------------------------------------
 Installation
-------------
+------------------------------------------------------------------------------
 
 If you don't already have an existing Spree site, [click here](https://gist.github.com/946719) then come back later... You can also read the Spree docs [here](http://spreecommerce.com/documentation/getting_started.html)...
 
@@ -40,16 +43,16 @@ bundle exec rails s
 ```
 
 
+------------------------------------------------------------------------------
 Usage
------
+------------------------------------------------------------------------------
 
-[todo] add basic usage stuff here
+Basic usage of this CMS is trivial. Create pages and add content... 
+
+Pages also have images so you can create galleries or slideshows.  
 
 
-### Here's some tips for making content really customized...
-
-
-#### Contexts
+### Content Contexts
 
 Contexts allow you to place different forms of content in various places of a page. A slideshow or a sidebar might be good examples...
 
@@ -68,11 +71,15 @@ In your view you'll be able to grab those bits of content like so:
 ```
 
 
-#### Custom image sizes
+### Custom image sizes
 
 Use a content decorator when you want different contexts to have their own image sizes:
 
+
 ```ruby
+
+# app/models/content_decorator.rb
+
 Content.class_eval do
 
   # override default image sizes
@@ -101,8 +108,9 @@ end
 ```
 
 
+------------------------------------------------------------------------------
 Demo
-----
+------------------------------------------------------------------------------
 
 You can easily use the test/dummy app as a demo of spree_essential_cms. Just `cd` to where you develop and run:
 
@@ -116,8 +124,15 @@ cd test/dummy
 bundle exec rails s
 ```
 
+
+------------------------------------------------------------------------------
 Change Log
-----------
+------------------------------------------------------------------------------
+
+**2012/1/16**
+
+* Add support for Spree 1.0.x
+
 
 **0.2.1 - 2011/12/15**
 
@@ -147,8 +162,9 @@ Change Log
 * Extracted from the Spree Essentials core.
 
 
+------------------------------------------------------------------------------
 To Do
------
+------------------------------------------------------------------------------
 
 * more tests... many many more.
 * optimizations
@@ -156,21 +172,23 @@ To Do
 * add widgets that you can drop into any page
 * page and menu caching/sweeping
 * nested set for pages
-* 0.30 and 0.40 compatibility
 * create wiki pages
 
 
+------------------------------------------------------------------------------
 Contributors
-------------
+------------------------------------------------------------------------------
 
 * Spencer Steffen ([@citrus](https://github.com/citrus))
 * Kyle West ([@kylewest](https://github.com/kylewest))
+* [@kpitn](https://github.com/kpitn)
 
 
 If you'd like to help out feel free to fork and send me pull requests!
 
 
+------------------------------------------------------------------------------
 License
--------
+------------------------------------------------------------------------------
 
-Copyright (c) 2011 Spencer Steffen & Citrus, released under the New BSD License All rights reserved.
+Copyright (c) 2011 - 2012 Spencer Steffen & Citrus, released under the New BSD License All rights reserved.
