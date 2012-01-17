@@ -153,7 +153,7 @@ If for any reason you want to re-create your `test/dummy` app, just re-run `bund
 Change Log
 ------------------------------------------------------------------------------
 
-**2012/1/16**
+**0.3.0.rc1 - 2012/1/16**
 
 * Add support for Spree 1.0.x
 
