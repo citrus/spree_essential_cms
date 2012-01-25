@@ -14,7 +14,14 @@ Otherwise, follow these steps to get up and running with SpreeEssentialCms:
 Add spree_essential_cms to your Gemfile:
 
 ```ruby
-gem 'spree_essential_cms', '>= 0.2.1'
+# Spree 1.0.x
+gem 'spree_essential_cms', '~> 0.3.0.rc1'
+
+# Spree 0.70.x
+gem 'spree_essential_cms', '~> 0.2.1'
+
+# Spree 0.60.x and below
+gem 'spree_essential_cms', '~> 0.1.2'
 ```
 
 Now, bundle up with:
