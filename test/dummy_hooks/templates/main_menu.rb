@@ -1,5 +1,5 @@
-Deface::Override.new(:virtual_path  => "layouts/spree_application",
+Deface::Override.new(:virtual_path  => "spree/layouts/spree_application",
                      :name          => "spree_essential_cms_main_menu",
                      :insert_bottom => "#header[data-hook]",
-                     :partial       => "shared/main_menu",
+                     :partial       => "spree/shared/main_menu",
                      :disabled      => false)
