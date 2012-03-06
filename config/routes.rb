@@ -1,13 +1,13 @@
 class Spree::PossiblePage
   def self.matches?(request)
     path = request.fullpath
-    return if path =~ /(^\/(admin|account|cart|checkout|content|login|pg\/|orders|products|s\/|session|signup|shipments|states|t\/|tax_categories|user)+)/
-    count = Spree::Page.active.where(:path => path.gsub("//","/")).count
+    return if path =~ /(^\/+(admin|account|cart|checkout|content|login|pg\/|orders|products|s\/|session|signup|shipments|states|t\/|tax_categories|user)+)/
+    count = Spree::Page.active.where(:path => path.gsub(/\/+/, "/")).count
     0 < count
   end
 end
 
-Spree::Core::Engine.routes.draw do
+Spree::Core::Engine.routes.append do
 
   namespace :admin do
 
