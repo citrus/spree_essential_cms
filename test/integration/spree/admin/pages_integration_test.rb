@@ -9,14 +9,14 @@ class Spree::Admin::PagesIntegrationTest < ActiveSupport::IntegrationCase
   end
   
   should "have a link to new page" do
-    visit admin_pages_path
+    visit spree.admin_pages_path
     btn = find(".actions a.button").native
-    assert_match /#{new_admin_page_path}$/, btn.attribute('href')
+    assert_match /#{spree.new_admin_page_path}$/, btn.attribute('href')
     assert_equal "New Page", btn.text
   end
   
   should "get new page" do  
-    visit new_admin_page_path
+    visit spree.new_admin_page_path
     assert has_content?("New Page")
     within "#new_spree_page" do
       @labels.each do |f|
@@ -26,7 +26,7 @@ class Spree::Admin::PagesIntegrationTest < ActiveSupport::IntegrationCase
   end
     
   should "validate page" do
-    visit new_admin_page_path
+    visit spree.new_admin_page_path
     click_button "Create"
     within "#errorExplanation" do
       assert_seen "2 errors prohibited this record from being saved:"
@@ -36,7 +36,7 @@ class Spree::Admin::PagesIntegrationTest < ActiveSupport::IntegrationCase
   end
   
   should "create a page" do
-    visit new_admin_page_path
+    visit spree.new_admin_page_path
     within "#new_spree_page" do
       @labels.each_with_index do |label, index|
       	fill_in label, :with => @values[index]      
@@ -44,7 +44,7 @@ class Spree::Admin::PagesIntegrationTest < ActiveSupport::IntegrationCase
     end
     click_button "Create"
     @page = Spree::Page.last
-    assert_equal edit_admin_page_content_path(@page, @page.contents.first), current_path
+    assert_equal spree.edit_admin_page_content_path(@page, @page.contents.first), current_path
     assert_flash :notice, %(Page "Just a page" has been successfully created!)
   end
   
@@ -54,7 +54,7 @@ class Spree::Admin::PagesIntegrationTest < ActiveSupport::IntegrationCase
     end
     
     should "edit and update" do
-      visit edit_admin_page_path(@page)
+      visit spree.edit_admin_page_path(@page)
       
       within "#edit_spree_page_#{@page.id}" do
         @labels.each_with_index do |label, index|
@@ -63,12 +63,12 @@ class Spree::Admin::PagesIntegrationTest < ActiveSupport::IntegrationCase
         end
       end
       click_button "Update"
-      assert_equal admin_page_path(@page.reload), current_path
+      assert_equal spree.admin_page_path(@page.reload), current_path
       assert_flash :notice, %(Page "egap a tsuJ" has been successfully updated!)
     end
     
     should "get destroyed" do
-      visit admin_pages_path
+      visit spree.admin_pages_path
       find("a[href='#']").click
       assert find_by_id("popup_ok").click
     end

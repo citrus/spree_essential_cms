@@ -8,14 +8,14 @@ class Spree::Admin::ContentsIntegrationTest < ActiveSupport::IntegrationCase
   end
   
   should "have a link to new content" do
-    visit admin_page_contents_path(@page)
+    visit spree.admin_page_contents_path(@page)
     btn = find(".actions a.button").native
-    assert_match /#{new_admin_page_content_path(@page)}$/, btn.attribute('href')
+    assert_match /#{spree.new_admin_page_content_path(@page)}$/, btn.attribute('href')
     assert_equal "New Content", btn.text
   end
   
   should "get new content" do  
-    visit new_admin_page_content_path(@page)
+    visit spree.new_admin_page_content_path(@page)
     assert has_content?("New Content")
     within "#new_spree_content" do
       assert has_field?("Title")
@@ -30,7 +30,7 @@ class Spree::Admin::ContentsIntegrationTest < ActiveSupport::IntegrationCase
   end
     
   should "validate content" do
-    visit new_admin_page_content_path(@page)
+    visit spree.new_admin_page_content_path(@page)
     click_button "Create"
     within "#errorExplanation" do
       assert_seen "1 error prohibited this record from being saved:"
@@ -39,14 +39,14 @@ class Spree::Admin::ContentsIntegrationTest < ActiveSupport::IntegrationCase
   end
   
   should "create some content" do
-    visit new_admin_page_content_path(@page)
+    visit spree.new_admin_page_content_path(@page)
     within "#new_spree_content" do
       fill_in "Title", :with => "Just some content"
       select @page.title, :from => "Page"
       fill_in "Body",  :with => "Just some words in the content..."
     end
     click_button "Create"
-    assert_equal admin_page_contents_path(@page), current_path
+    assert_equal spree.admin_page_contents_path(@page), current_path
     assert_flash :notice, "Content has been successfully created!"
   end
   
@@ -56,19 +56,19 @@ class Spree::Admin::ContentsIntegrationTest < ActiveSupport::IntegrationCase
     end
     
     should "edit and update" do
-      visit edit_admin_page_content_path(@page, @content)      
+      visit spree.edit_admin_page_content_path(@page, @content)      
       within "#edit_spree_content_#{@content.id}" do
         fill_in "Title", :with => "Just some content"
         select @page.title, :from => "Page"
         fill_in "Body",  :with => "Just some words in the content..."
       end
       click_button "Update"
-      assert_equal admin_page_contents_path(@page.reload), current_path
+      assert_equal spree.admin_page_contents_path(@page.reload), current_path
       assert_flash :notice, "Content has been successfully updated!"
     end
     
     should "get destroyed" do
-      visit admin_page_contents_path(@page)
+      visit spree.admin_page_contents_path(@page)
       within "table.index" do
         find("a[href='#']").click
       end
