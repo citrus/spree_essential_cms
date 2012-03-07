@@ -11,15 +11,15 @@
 
 <h1><%= t('.listing_pages') %></h1>
 
-<table class="index sortable">
+<table class="index sortable" data-sortable-link="<%= update_positions_admin_pages_url -%>">
   <thead>
-	<tr>
-    	<th><%= sort_link @search, :title, t("page.title") %></th>
-    	<th><%= sort_link @search, :path, t("page.path") %></th>
-    	<th><%= sort_link @search, :accessible, t("page.accessible") %></th>
-    	<th><%= sort_link @search, :visible, t("page.visible") %></th>
-    	<th><%= t("action") %></th>
-	</tr>
+  <tr>
+      <th><%= sort_link @search, :title, t("page.title") %></th>
+      <th><%= sort_link @search, :path, t("page.path") %></th>
+      <th><%= sort_link @search, :accessible, t("page.accessible") %></th>
+      <th><%= sort_link @search, :visible, t("page.visible") %></th>
+      <th><%= t("action") %></th>
+  </tr>
   </thead>
   <tbody>
     <%- @collection.each do |page|%>
@@ -29,10 +29,10 @@
       <td><%= page.accessible %></td>
       <td><%= page.visible %></td>
       <td>
-      	<%= link_to_with_icon :accept, t('preview'), page.path, :onclick => 'window.open(this.href);return false;' %> &nbsp;
-      	<%= link_to_with_icon :pages, t('page.contents'), admin_page_contents_path(page) %> &nbsp;
-      	<%= link_to_edit page %> &nbsp;
-      	<%= link_to_delete page %>
+        <%= link_to_with_icon :accept, t('preview'), page.path, :onclick => 'window.open(this.href);return false;' %> &nbsp;
+        <%= link_to_with_icon :pages, t('page.contents'), admin_page_contents_path(page) %> &nbsp;
+        <%= link_to_edit page %> &nbsp;
+        <%= link_to_delete page %>
       </td>
     </tr>
     <% end %>
@@ -50,7 +50,7 @@
     <p>
       <label><%= t '.title_contains' %></label><br />
       <%= f.text_field :title_contains, :size => 25 %>
-    </p>      
+    </p>
     <p><%= button t("search") %></p>
   <% end %>
 </div>
