@@ -211,6 +211,7 @@ Contributors
 ------------------------------------------------------------------------------
 
 * Spencer Steffen ([@citrus](https://github.com/citrus))
+* Stéphane Bounmy ([@sbounmy](https://github.com/sbounmy))
 * Kyle West ([@kylewest](https://github.com/kylewest))
 * [@kpitn](https://github.com/kpitn)
 

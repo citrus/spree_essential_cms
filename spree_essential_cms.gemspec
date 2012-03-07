@@ -19,7 +19,7 @@ Gem::Specification.new do |s|
   s.require_paths = ['lib']
   
   # Spree Essentials
-  # s.add_runtime_dependency('spree_essentials', '~> 0.4.0.rc3')
+  s.add_runtime_dependency('spree_essentials', '~> 0.4.0.rc3')
   
   # Development
   s.add_development_dependency('spree_sample', '~> 1.0.0')
