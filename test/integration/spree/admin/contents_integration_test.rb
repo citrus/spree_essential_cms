@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class Spree::Admin::ContentsIntegrationTest < ActiveSupport::IntegrationCase
+class Spree::Admin::ContentsIntegrationTest < SpreeEssentials::IntegrationCase
 
   setup do
     Spree::Content.destroy_all

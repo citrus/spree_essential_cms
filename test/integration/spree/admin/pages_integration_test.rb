@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class Spree::Admin::PagesIntegrationTest < ActiveSupport::IntegrationCase
+class Spree::Admin::PagesIntegrationTest < SpreeEssentials::IntegrationCase
 
   setup do
     Spree::Page.destroy_all
@@ -8,7 +8,7 @@ class Spree::Admin::PagesIntegrationTest < ActiveSupport::IntegrationCase
     @values = %(Just a page, Super Sweet Page Title, #{Faker::Lorem.paragraph}, one keyword, /some-page, Visit Page).split(', ')
   end
   
-  should "have a link to new page" do
+  should "get index and have a link to new page" do
     visit spree.admin_pages_path
     btn = find(".actions a.button").native
     assert_match /#{spree.new_admin_page_path}$/, btn.attribute('href')
@@ -53,12 +53,23 @@ class Spree::Admin::PagesIntegrationTest < ActiveSupport::IntegrationCase
       @page = Factory.create(:spree_page)
     end
     
+    should "get show" do
+      visit spree.admin_page_path(@page)
+      assert_seen @page.meta_title
+      assert_seen @page.meta_description
+      assert_seen @page.meta_keywords
+      assert has_link?("Edit")
+      within "#sidebar" do
+        assert has_link?("Contents")
+        assert has_link?("Images")
+      end
+    end
+    
     should "edit and update" do
       visit spree.edit_admin_page_path(@page)
       
       within "#edit_spree_page_#{@page.id}" do
         @labels.each_with_index do |label, index|
-          next if label == 'Pageed At'
         	fill_in label, :with => @values[index].reverse      
         end
       end
@@ -71,6 +82,28 @@ class Spree::Admin::PagesIntegrationTest < ActiveSupport::IntegrationCase
       visit spree.admin_pages_path
       find("a[href='#']").click
       assert find_by_id("popup_ok").click
+    end
+    
+  end
+  
+  context "The homepage" do
+  
+    setup do
+      @page = Spree::Page.create(:title => "Home", :meta_title => "Welcome to our homepage!", :path => "/")
+    end
+    
+    should "edit and update" do
+      visit spree.edit_admin_page_path(@page)
+      
+      within "#edit_spree_page_#{@page.id}" do
+        @labels.each_with_index do |label, index|
+          next if label == "Path"
+        	fill_in label, :with => @values[index]      
+        end
+      end
+      click_button "Update"
+      assert_equal spree.admin_page_path(@page.reload), current_path
+      assert_flash :notice, %(Page "Just a page" has been successfully updated!)
     end
     
   end

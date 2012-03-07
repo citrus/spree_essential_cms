@@ -22,6 +22,7 @@ Gem::Specification.new do |s|
   # s.add_runtime_dependency('spree_essentials', '~> 0.4.0.rc3')
   
   # Development
+  s.add_development_dependency('spree_sample', '~> 1.0.0')
 	s.add_development_dependency('dummier',      '~> 0.3.0')
 	s.add_development_dependency('shoulda',      '~> 3.0.0')
 	s.add_development_dependency('factory_girl', '~> 2.6.0')

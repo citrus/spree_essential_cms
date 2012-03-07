@@ -1,7 +1,3 @@
-<% if @pages %>
-  <ul id="main-menu">
-    <% @pages.each do |page| %>
-      <li<%= ' class="active"'.html_safe if page.matches?(request.path) %>><%= link_to page.nav_title, page.path %></li>
-    <% end %>
-  </ul>
-<% end %>
+<ul id="main-menu">
+  <%= render "spree/shared/main_menu_items" %>
+</ul>

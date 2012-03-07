@@ -1,0 +1,6 @@
+<% unless @pages.blank? %>
+  <% @pages.each do |page| %>
+    <% next if page.root? %>
+    <%= content_tag(:li, link_to(page.nav_title, page.path), :class => page.matches?(request.path) ? "active" : nil) %>
+  <% end %>
+<% end %>

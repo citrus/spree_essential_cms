@@ -1,5 +1,16 @@
 class Spree::Page < ActiveRecord::Base
   
+  class << self
+  
+    attr_accessor :current
+    
+    def find_by_path(_path)
+      return super('/') if _path == "_home_" && self.exists?(:path => "/")
+      super _path.to_s.sub(/^\/*/, "/").gsub("--", "/")
+    end
+
+  end
+  
   alias_attribute :name, :title
   
   validates_presence_of :title
@@ -11,19 +22,14 @@ class Spree::Page < ActiveRecord::Base
   scope :visible, active.where(:visible => true)
   
   has_many :contents, :order => :position, :dependent => :destroy
-  has_many :images, :as => :viewable, :class_name => 'Spree::PageImage', :order => :position, :dependent => :destroy
+  has_many :images, :as => :viewable, :class_name => "Spree::PageImage", :order => :position, :dependent => :destroy
   
   before_validation :set_defaults
   after_create :create_default_content
-  
-  def self.find_by_path(_path)
-    return super('/') if _path == '_home_' && self.exists?(:path => '/')
-    super _path.to_s.sub(/^\/*/, '/').gsub('--', '/')
-  end
-  
+    
   def to_param
-    return '_home_' if path == '/'
-    path.sub(/^\//, '').gsub('/', '--')
+    return "_home_" if path == "/"
+    path.sub(/^\/*/, "")
   end
   
   def meta_title
@@ -47,6 +53,12 @@ class Spree::Page < ActiveRecord::Base
     self.path == "/"
   end
   
+  def path=(value)
+    value = value.to_s.strip
+    value.gsub!(/[\/\-\_]+$/, "") unless value == "/"
+    write_attribute :path, value
+  end
+  
   private
   
     def set_defaults
@@ -54,7 +66,7 @@ class Spree::Page < ActiveRecord::Base
       #return errors.add(:path, "is reserved. Please use another") if path.to_s =~ /home/
       self.nav_title = title if nav_title.blank?
       self.path = nav_title.parameterize if path.blank?
-      self.path = "/" + path.sub(/^\//, '')
+      self.path = "/" + path.sub(/^\//, "")
     end
     
     def create_default_content

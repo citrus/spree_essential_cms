@@ -21,4 +21,33 @@ class Spree::PageTest < Test::Unit::TestCase
     assert !page.root?
   end
   
+  context "With a new page" do
+  
+    setup do
+      @page = Spree::Page.new
+    end
+  
+    should "strip trailing slashes when setting page" do
+      %w(/path /path/ /path//).each do |path|
+        @page.path = path
+        assert_equal "/path", @page.path
+      end      
+    end
+  
+    should "strip trailing dashes when setting page" do
+      %w(/path /path- /path--).each do |path|
+        @page.path = path
+        assert_equal "/path", @page.path
+      end      
+    end
+  
+    should "strip trailing underscores when setting page" do
+      %w(/path /path_ /path__).each do |path|
+        @page.path = path
+        assert_equal "/path", @page.path
+      end      
+    end
+  
+  end
+  
 end

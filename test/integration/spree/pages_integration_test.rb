@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class Spree::PagesIntegrationTest < ActiveSupport::IntegrationCase
+class Spree::PagesIntegrationTest < SpreeEssentials::IntegrationCase
   
   setup do
     Spree::Page.destroy_all
@@ -106,43 +106,42 @@ class Spree::PagesIntegrationTest < ActiveSupport::IntegrationCase
       
     end
     
+  end
+  
+  
+  context "with several existing pages" do
     
-    context "with several existing pages" do
-      
-      setup do
-        Spree::Page.destroy_all
-        @home_page    = Factory.create(:spree_page, :title => "Home",  :path => "/")
-        @another_home = Factory.create(:spree_page, :title => "Another Home",  :path => "/home")
-        @about_page   = Factory.create(:spree_page, :title => "About", :path => "/about-us")
-        @nested_page  = Factory.create(:spree_page, :title => "Our Services", :path => "/about-us/services")
-      end
-      
-      should "get the homepage" do
-        visit "/"
-        assert_title @home_page.title
-      end
-      
-      should "get the page called home" do
-        visit "/home"
-        assert_title @another_home.title
-      end
-      
-      should "get the about page" do
-        visit "/about-us"
-        assert_title @about_page.title
-      end
-        
-      should "get a nested page" do
-        visit "/about-us/services"
-        assert_title @nested_page.title
-      end
-        
-      should "render 404" do
-        visit "/a/page/that/doesnt/exist"
-        assert_seen "Error" 
-      end    
-    
+    setup do
+      @home_page    = Factory.create(:spree_page, :title => "Home",  :path => "/")
+      @another_home = Factory.create(:spree_page, :title => "Another Home",  :path => "/home")
+      @about_page   = Factory.create(:spree_page, :title => "About", :path => "/about-us")
+      @nested_page  = Factory.create(:spree_page, :title => "Our Services", :path => "/about-us/services")
     end
-            
+    
+    should "get the homepage" do
+      visit "/"
+      assert_title @home_page.title
+    end
+    
+    should "get the page called home" do
+      visit "/home"
+      assert_title @another_home.title
+    end
+    
+    should "get the about page" do
+      visit "/about-us"
+      assert_title @about_page.title
+    end
+      
+    should "get a nested page" do
+      visit "/about-us/services"
+      assert_title @nested_page.title
+    end
+      
+    should "render 404" do
+      visit "/a/page/that/doesnt/exist"
+      assert_seen "Error" 
+    end    
+              
   end    
 end

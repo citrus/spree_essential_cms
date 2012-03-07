@@ -1,27 +1,26 @@
 class Spree::PossiblePage
-  def self.matches?(request)
-    path = request.fullpath
-    return if path =~ /(^\/+(admin|account|cart|checkout|content|login|pg\/|orders|products|s\/|session|signup|shipments|states|t\/|tax_categories|user)+)/
-    count = Spree::Page.active.where(:path => path.gsub(/\/+/, "/")).count
-    0 < count
+  def self.matches?(request) 
+    return false if request.fullpath =~ /(^\/+(admin|account|cart|checkout|content|login|pg\/|orders|products|s\/|session|signup|shipments|states|t\/|tax_categories|user)+)/
+    Spree::Page.current = Spree::Page.active.find_by_path(request.fullpath)
+    !Spree::Page.current.nil?
   end
 end
 
 Spree::Core::Engine.routes.append do
-
+  
   namespace :admin do
-
-    resources :pages do
+    
+    resources :pages, :constraints => { :id => /.*/ } do
       collection do
         post :update_positions
       end
-
+    
       resources :contents do
         collection do
           post :update_positions
         end
       end
-
+    
       resources :images, :controller => "page_images" do
         collection do
           post :update_positions
@@ -30,7 +29,7 @@ Spree::Core::Engine.routes.append do
     end
 
   end
-
+  
   constraints(Spree::PossiblePage) do
     get '(:page_path)', :to => 'pages#show', :page_path => /.*/, :as => :page
   end
