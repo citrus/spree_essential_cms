@@ -13,13 +13,13 @@
 
 <h2><%= t('.listing_contents') %></h2>
 
-<table class="index sortable">
+<table class="index sortable" data-sortable-link="<%= update_positions_admin_page_contents_url(@page) -%>">
   <thead>
-	<tr>
-    	<th><%= sort_link @search, :title, t("content.title") %></th>
-    	<th><%= sort_link @search, :context, t("content.context") %></th>
-    	<th><%= t("action") %></th>
-	</tr>
+  <tr>
+      <th><%= sort_link @search, :title, t("content.title") %></th>
+      <th><%= sort_link @search, :context, t("content.context") %></th>
+      <th><%= t("action") %></th>
+  </tr>
   </thead>
   <tbody>
     <%- @collection.each do |content|%>
@@ -27,8 +27,8 @@
       <td><span class="handle">&nbsp;</span>&nbsp; <%= link_to content.title, object_url(content) %></td>
       <td><%= content.context %>
       <td>
-      	<%= link_to_edit content %> &nbsp;
-      	<%= link_to_delete content %>
+        <%= link_to_edit content %> &nbsp;
+        <%= link_to_delete content %>
       </td>
     </tr>
     <% end %>
@@ -47,7 +47,7 @@
     <p>
       <label><%= t('content.title') %></label><br />
       <%= f.text_field :title_like, :size => 25 %>
-    </p>      
+    </p>
     <p><%= button t("search") %></p>
   <% end %>
 </div>
