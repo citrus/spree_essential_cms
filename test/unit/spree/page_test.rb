@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class Spree::PageTest < Test::Unit::TestCase
+class Spree::PageTest < ActiveSupport::TestCase
 
   def setup
     Spree::Page.destroy_all
