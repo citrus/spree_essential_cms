@@ -2,8 +2,6 @@ class Spree::Page < ActiveRecord::Base
   
   class << self
   
-    attr_accessor :current
-    
     def find_by_path(_path)
       return super('/') if _path == "_home_" && self.exists?(:path => "/")
       super _path.to_s.sub(/^\/*/, "/").gsub("--", "/")

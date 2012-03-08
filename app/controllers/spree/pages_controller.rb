@@ -1,7 +1,7 @@
 class Spree::PagesController < Spree::BaseController
 
   def show
-    @page = Spree::Page.current
+    @page = current_page
     raise ActionController::RoutingError.new("No route matches [GET] #{request.fullpath}") if @page.nil? 
     if @page.root?
       @posts    = Spree::Post.live.limit(5)    if SpreeEssentials.has?(:blog)

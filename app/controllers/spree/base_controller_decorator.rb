@@ -1,10 +1,10 @@
 Spree::BaseController.class_eval do
 
   before_filter :get_pages
-  helper_method :get_current_page
+  helper_method :current_page
   
-  def get_current_page
-    @page = Spree::Page.find_by_path(request.fullpath)
+  def current_page
+    @page ||= Spree::Page.find_by_path(request.fullpath)
   end
   
   def get_pages
