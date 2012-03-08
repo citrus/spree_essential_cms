@@ -1,24 +1,26 @@
 <%= render :partial => 'spree/admin/shared/page_tabs', :locals => {:current => "Images"} %>
 
 <table class="index sortable" data-sortable-link="<%= update_positions_admin_page_images_url(@page) -%>">
-  <tr>
-    <th><%= t("thumbnail") %></th>
-    <th><%= t("alt_text") %></th>
-    <th><%= t("action") %></th>
-  </tr>
-
-  <% @page.images.each do |image| %>
-    <tr id="<%= dom_id(image).sub('page_', '') %>">
-      <td><span class="handle">&nbsp;</span>&nbsp; <%= link_to(image_tag(image.attachment.url(:mini)), image.attachment.url(:large)) %></td>
-      <td><%= image.alt %></td>
-      <td class="actions">
-        <%= link_to_with_icon('edit', t("edit"), edit_admin_page_image_url(@page, image)) %>
-        &nbsp;
-        <%= link_to_delete image, {:url => admin_page_image_url(@page, image) }%>
-      </td>
+  <thead>
+    <tr>
+      <th><%= t("thumbnail") %></th>
+      <th><%= t("alt_text") %></th>
+      <th><%= t("action") %></th>
     </tr>
-  <% end %>
-
+  </thead>
+  <tbody>
+    <% @page.images.each do |image| %>
+      <tr id="<%= dom_id(image) %>">
+        <td><span class="handle">&nbsp;</span>&nbsp; <%= link_to(image_tag(image.attachment.url(:mini)), image.attachment.url(:large)) %></td>
+        <td><%= image.alt %></td>
+        <td class="actions">
+          <%= link_to_with_icon('edit', t("edit"), edit_admin_page_image_url(@page, image)) %>
+          &nbsp;
+          <%= link_to_delete image, {:url => admin_page_image_url(@page, image) }%>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
 </table>
 
 <div id="images"></div>

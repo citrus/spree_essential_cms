@@ -1,3 +1,5 @@
+<%= render :partial => 'spree/admin/shared/page_tabs', :locals => {:current => "Images"} unless request.xhr? %>
+
 <h3><%= t("new_image") %></h3>
 
 <%= render 'spree/shared/error_messages', :target => @page_image %>

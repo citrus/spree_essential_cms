@@ -1,8 +1,6 @@
 begin
   require "simplecov"
-  SimpleCov.start do
-    add_filter "test/"
-  end
+  SimpleCov.start "rails"
 rescue LoadError => e
 end
 
@@ -14,5 +12,8 @@ require "spree_essentials/testing/test_helper"
 require "spree_essentials/testing/integration_case"
 
 begin require "turn"; rescue LoadError => e; end
+
+# We'll use ActionConroller's xhr method for faking drag & drops
+SpreeEssentials::IntegrationCase.send(:include, ActionController::TestCase::Behavior)
 
 Dir["#{File.dirname(__FILE__)}/support/**/*.rb"].each { |f| require f }

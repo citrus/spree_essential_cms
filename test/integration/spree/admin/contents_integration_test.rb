@@ -77,4 +77,24 @@ class Spree::Admin::ContentsIntegrationTest < SpreeEssentials::IntegrationCase
     
   end
   
+  context "several contents" do
+  
+    setup do
+      setup_action_controller_behaviour(Spree::Admin::ContentsController)
+      @contents = Array.new(2) {|i| Factory(:spree_content, :title => "Content ##{i + 1}", :page => @page, :position => i) }
+    end
+    
+    should "update positions" do
+      positions = Hash[@contents.map{|i| [i.id, 2 - i.position ]}]
+      visit spree.admin_page_contents_path(@page)
+      assert_seen "Content #1", :within => "tbody tr:first"
+      assert_seen "Content #2", :within => "tbody tr:last"
+      xhr :post, :update_positions, { :page_id => @page.to_param, :positions => positions }
+      visit spree.admin_page_contents_path(@page)      
+      assert_seen "Content #2", :within => "tbody tr:first"
+      assert_seen "Content #1", :within => "tbody tr:last"
+    end
+  
+  end
+  
 end

@@ -108,4 +108,24 @@ class Spree::Admin::PagesIntegrationTest < SpreeEssentials::IntegrationCase
     
   end
   
+  context "several pages" do
+  
+    setup do
+      setup_action_controller_behaviour(Spree::Admin::PagesController)
+      @pages = Array.new(2) {|i| Factory(:spree_page, :title => "Page ##{i + 1}", :position => i) }
+    end
+    
+    should "update positions" do
+      positions = Hash[@pages.map{|i| [i.id, 2 - i.position ]}]
+      visit spree.admin_pages_path
+      assert_seen "Page #1", :within => "tbody tr:first"
+      assert_seen "Page #2", :within => "tbody tr:last"
+      xhr :post, :update_positions, { :page_id => @page.to_param, :positions => positions }
+      visit spree.admin_pages_path
+      assert_seen "Page #2", :within => "tbody tr:first"
+      assert_seen "Page #1", :within => "tbody tr:last"
+    end
+  
+  end
+  
 end

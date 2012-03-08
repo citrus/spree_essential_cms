@@ -17,6 +17,8 @@ class Spree::Content < ActiveRecord::Base
 
   scope :for, Proc.new{|context| where(:context => context)}
 
+  before_save :reprocess_images_if_context_changed, :on => :update
+
   [ :link_text, :link, :body ].each do |property|
     define_method "has_#{property.to_s}?" do
       has_value property
@@ -57,11 +59,16 @@ class Spree::Content < ActiveRecord::Base
     write_attribute :context, value.to_s.parameterize
   end
 
-  private
+private
 
-    def has_value(selector)
-      v = self.send selector
-      v && !v.to_s.blank?
-    end
+  def reprocess_images_if_context_changed
+    return unless context_changed?
+    attachment.reprocess!
+  end
+
+  def has_value(selector)
+    v = self.send selector
+    v && !v.to_s.blank?
+  end
 
 end

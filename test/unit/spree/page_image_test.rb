@@ -8,11 +8,7 @@ class Spree::PageImageTest < ActiveSupport::TestCase
     @page_image = Spree::PageImage.new
   end
   
-  should "validate no attachment errors" do
-    @page_image.attachment.errors[:attachment_file_size] = "Is to large.."
-    assert !@page_image.valid?
-    assert @page_image.errors.include?(:attachment)
-  end
+  should validate_attachment_presence(:attachment)
   
   %w(image/jpeg image/gif image/png image/tiff).each do |mime|  
     should "return true for #{mime} as image content" do

@@ -13,4 +13,9 @@ FactoryGirl.define do
     body  { "Nothing too cool here except the title: #{title}." }
   end
 
+  factory :spree_page_image, :class => Spree::PageImage do
+    viewable { Spree::Page.first }
+    attachment { sample_image }
+  end
+
 end
