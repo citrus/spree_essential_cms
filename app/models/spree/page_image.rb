@@ -1,5 +1,3 @@
-
-require "pp"
 class Spree::PageImage < Spree::Asset
 
   validates_attachment_presence :attachment
