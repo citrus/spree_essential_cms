@@ -17,7 +17,7 @@ class Spree::Content < ActiveRecord::Base
 
   scope :for, Proc.new{|context| where(:context => context)}
 
-  before_save :reprocess_images_if_context_changed, :on => :update
+  before_update :reprocess_images_if_context_changed
 
   [ :link_text, :link, :body ].each do |property|
     define_method "has_#{property.to_s}?" do
@@ -62,7 +62,7 @@ class Spree::Content < ActiveRecord::Base
 private
 
   def reprocess_images_if_context_changed
-    return unless context_changed?
+    return unless context_changed? && !attachment.nil?
     attachment.reprocess!
   end
 
