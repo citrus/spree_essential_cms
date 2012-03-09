@@ -65,7 +65,8 @@ class Spree::Content < ActiveRecord::Base
 private
 
   def delete_attachment!
-    self.attachment = nil if !!delete_attachment
+    del = delete_attachment.to_s
+    self.attachment = nil if del == "1" || del == "true"
     true
   end
 

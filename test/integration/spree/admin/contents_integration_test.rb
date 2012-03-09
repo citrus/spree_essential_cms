@@ -67,6 +67,13 @@ class Spree::Admin::ContentsIntegrationTest < SpreeEssentials::IntegrationCase
       assert_flash :notice, "Content has been successfully updated!"
     end
     
+    should "not delete current attachment unless checkbox is checked" do
+      @content.update_attribute(:attachment, sample_image)
+      visit spree.edit_admin_page_content_path(@page, @content)
+      click_button "Update"
+      assert !@content.reload.attachment_file_name.blank?
+    end
+    
     should "delete current attachment" do
       @content.update_attribute(:attachment, sample_image)
       visit spree.edit_admin_page_content_path(@page, @content)
