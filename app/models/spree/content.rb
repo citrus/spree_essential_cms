@@ -62,7 +62,7 @@ class Spree::Content < ActiveRecord::Base
 private
 
   def reprocess_images_if_context_changed
-    return unless context_changed? && !attachment.nil?
+    return unless context_changed? && attachment_file_name.present?
     attachment.reprocess!
   end
 
