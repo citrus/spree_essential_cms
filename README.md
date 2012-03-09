@@ -49,6 +49,19 @@ Boot your server and checkout the admin at `localhost:3000/admin`!
 bundle exec rails s
 ```
 
+### To use the built in main menu create a deface override in your application that looks like this:
+
+```ruby
+# app/overrides/main_menu.rb
+Deface::Override.new(:virtual_path  => "spree/shared/_store_menu",
+                     :name          => "spree_essential_cms_main_menu_items",
+                     :insert_after  => "#home-link[data-hook]",
+                     :partial       => "spree/shared/main_menu_items",
+                     :disabled      => false)
+```
+
+This example override can be found in `test/dummy_hooks/templates/main_menu.rb`
+
 
 ------------------------------------------------------------------------------
 Usage

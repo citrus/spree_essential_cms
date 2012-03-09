@@ -25,6 +25,12 @@ class Spree::ContentTest < ActiveSupport::TestCase
         @content.update_attribute(:context, "slideshow")
         assert @content.reload.attachment.exists?(:slide)
       end
+      
+      should "delete attachment" do
+        @content.update_attribute(:delete_attachment, true)
+        assert !@content.reload.attachment.exists?
+        assert @content.attachment_file_name.blank?
+      end
             
     end
     

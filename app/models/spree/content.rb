@@ -1,5 +1,7 @@
 class Spree::Content < ActiveRecord::Base
 
+  attr_accessor :delete_attachment
+
   belongs_to :page
   validates_associated :page
   validates_presence_of :title, :page
@@ -17,6 +19,7 @@ class Spree::Content < ActiveRecord::Base
 
   scope :for, Proc.new{|context| where(:context => context)}
 
+  before_update :delete_attachment!, :if => :delete_attachment
   before_update :reprocess_images_if_context_changed
 
   [ :link_text, :link, :body ].each do |property|
@@ -60,6 +63,11 @@ class Spree::Content < ActiveRecord::Base
   end
 
 private
+
+  def delete_attachment!
+    self.attachment = nil if !!delete_attachment
+    true
+  end
 
   def reprocess_images_if_context_changed
     return unless context_changed? && attachment_file_name.present?

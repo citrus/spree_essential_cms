@@ -67,6 +67,15 @@ class Spree::Admin::ContentsIntegrationTest < SpreeEssentials::IntegrationCase
       assert_flash :notice, "Content has been successfully updated!"
     end
     
+    should "delete current attachment" do
+      @content.update_attribute(:attachment, sample_image)
+      visit spree.edit_admin_page_content_path(@page, @content)
+      click_link "Optional Fields"
+      check "Delete current attachment"
+      click_button "Update"
+      assert @content.reload.attachment_file_name.blank?
+    end
+    
     should "get destroyed" do
       visit spree.admin_page_contents_path(@page)
       within "table.index" do

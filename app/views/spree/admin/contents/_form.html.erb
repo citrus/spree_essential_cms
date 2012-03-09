@@ -32,7 +32,14 @@
     <%= error_message_on :content, :attachment %>
   <% end %>
   
-  <% if @content.has_image? %>
+  <% if @content.attachment.exists?(:mini) %>
+    <%= form.field_container :delete_attachment do %>
+      <%= form.check_box :delete_attachment %>
+      <%= form.label :delete_attachment, t('content.delete_attachment') %><br />
+    <% end %>
+  <% end %>
+  
+  <% if @content.attachment.exists?(:mini) %>
     <p><%= image_tag @content.attachment.url(:mini) %></p>
   <% end %>
 
