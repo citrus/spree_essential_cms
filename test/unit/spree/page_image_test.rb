@@ -36,14 +36,12 @@ class Spree::PageImageTest < ActiveSupport::TestCase
       assert_equal hash, @page_image.attachment_sizes
     end
   end
-  
-  %w(image/jpeg image/gif image/png image/tiff).each do |mime|  
-    should "have slide attachment size if page is root" do
-      @page_image.viewable = Spree::Page.new(:path => "/")
-      @page_image.attachment_content_type = mime
-      hash = { :mini => '48x48>', :small => '150x150>', :medium => '420x300>', :large => '900x650>', :slide => '950x250#'}
-      assert_equal hash, @page_image.attachment_sizes
-    end
+
+  should "have slide attachment size if page is root" do
+    @page_image.viewable = Spree::Page.new(:path => "/")
+    @page_image.attachment_content_type = "image/jpeg"
+    hash = { :mini => '48x48>', :small => '150x150>', :medium => '420x300>', :large => '900x650>', :slide => '950x250#'}
+    assert_equal hash, @page_image.attachment_sizes
   end
   
 end
