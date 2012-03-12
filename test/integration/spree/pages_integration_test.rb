@@ -101,7 +101,22 @@ class Spree::PagesIntegrationTest < SpreeEssentials::IntegrationCase
     should "render 404" do
       visit "/a/page/that/doesnt/exist"
       assert_seen "Error" 
-    end    
-              
+    end  
+    
+    should "have a proper main menu" do
+      visit "/"
+      Spree::Page.order(:position).all.each_with_index do |page, index|
+        assert_seen page.nav_title, :within => "#main-nav-bar li:nth-child(#{index + 1}) a"
+      end      
+    end
+    
+    should "only have pages marked visible in main menu" do
+      @about_page.update_attribute(:visible, false)
+      visit "/"
+      within "#main-nav-bar" do
+        assert !has_content?(@about_page.nav_title)
+      end
+    end
+    
   end    
 end
