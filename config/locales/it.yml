@@ -1,0 +1,63 @@
+it:
+  page:
+    model_name: Pagina
+    contents: Contenuti
+    title: Titolo
+    nav_title: Titolo navigazione
+    path: Percorso
+    meta_title: Titolo (metadato)
+    meta_description: Descrizione (metadato)
+    meta_keywords: Parole chiave (metadato)
+    accessible: Accessibile
+    visible: Visibile
+    explain_accessible: le pagine non accessibili devono essere messe in un controller personalizzato
+    explain_visible: le pagine visibili verranno mostrate nel menù principale
+
+  content:
+    model_name: Contenuto
+    page_title: Titolo pagina
+    page: Pagina
+    title: Titolo
+    body: Corpo
+    attachment: Allegato
+    link: URL del collegamento
+    link_text: Testo del collegamento
+    context: Contesto
+    hide_title: Nascondi titolo
+    delete_attachment: Cancella gli allegati correnti
+
+  pages: Pagine
+
+  spree:
+    admin:
+      subnav:
+        pages: Pagine
+      shared:
+        contents_tab:
+          content: Contenuto
+        page_tabs:
+          editing_page: Modifica pagina
+          page_details: Dettagli della pagina
+          contents: Contenuti
+          images: Immagini
+      pages:
+        index:
+          title: Titolo
+          listing_pages: Elenco pagine
+          new_page: Nuova pagina
+          title_contains: Titolo
+        new:
+          new_page: Nuova pagina
+
+      contents:
+        index:
+          new_content: Nuovo contenuto
+          listing_contents: Elenca contenuti
+        new:
+          new_content: Nuovo contenuto
+        edit:
+          edit_content: Modifica contenuto
+
+      uploads:
+        index:
+          new_upload: Carica un nuovo allegato
