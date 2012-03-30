@@ -127,6 +127,12 @@ Content.class_eval do
 end
 ```
 
+### Custom Home Page
+
+This extension modifies the `Spree::HomeController.index` method and redirects to `/products`
+if no root page is defined in the spree CMS. In order to define a custom home page you'll need to use another view
+off of the `Spree::HomeController` class such as `splash`, add the root route
+(`root :to => 'spree/home#splash'`) to your `config/routes.rb`, and add a blank page with path "/" in the spree CMS.
 
 ------------------------------------------------------------------------------
 Demo
