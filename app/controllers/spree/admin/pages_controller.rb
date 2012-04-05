@@ -26,10 +26,10 @@ class Spree::Admin::PagesController < Spree::Admin::ResourceController
     end
     
     def collection
-      params[:search] ||= {}
-      params[:search][:meta_sort] ||= "page.asc"
-      @search = Spree::Page.metasearch(params[:search])
-      @collection = @search.page(params[:page]).per(Spree::Config[:orders_per_page])
+      params[:q] ||= {}
+      params[:q][:sort] ||= "page.asc"
+      @search = Spree::Page.search(params[:q])
+      @collection = @search.result.page(params[:page]).per(Spree::Config[:orders_per_page])
     end
 
 end
