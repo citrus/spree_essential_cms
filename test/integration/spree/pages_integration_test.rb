@@ -105,7 +105,6 @@ class Spree::PagesIntegrationTest < SpreeEssentials::IntegrationCase
 
     should "have a proper main menu" do
       visit "/"
-      save_and_open_page
       Spree::Page.order(:position).all.each do |page|
         assert_seen page.nav_title, :within => "#main-nav-bar li:nth-child(#{page.position}) a"
       end
