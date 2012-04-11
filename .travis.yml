@@ -4,6 +4,10 @@ rvm:
   - 1.9.3
   - ree
 
+branches:
+  only:
+    - master
+
 before_script:
   - "sh -e /etc/init.d/xvfb start"
   - "bundle exec dummier"
