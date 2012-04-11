@@ -17,7 +17,7 @@ class Spree::Admin::PageImagesIntegrationTest < SpreeEssentials::IntegrationCase
   should "get new page image" do  
     visit spree.new_admin_page_image_path(@page)
     assert_seen "New Image"
-    within "#new_spree_page_image" do
+    within "#new_page_image" do
       assert has_field?("Attachment")
       assert has_field?("Alt")   
     end
@@ -36,7 +36,7 @@ class Spree::Admin::PageImagesIntegrationTest < SpreeEssentials::IntegrationCase
   should "create page image" do
     visit spree.admin_page_images_path(@page)
     click_link "New Image"
-    within "#new_spree_page_image" do
+    within "#new_page_image" do
       attach_file "Attachment", sample_image_path
       fill_in "Alt", :with => "alt text!"
     end
@@ -52,7 +52,7 @@ class Spree::Admin::PageImagesIntegrationTest < SpreeEssentials::IntegrationCase
     
     should "edit and update" do
       visit spree.edit_admin_page_image_path(@page, @page_image)      
-      within "#edit_spree_page_image_#{@page_image.id}" do
+      within "#edit_page_image_#{@page_image.id}" do
         attach_file "Attachment", sample_image_path("2.jpg")
         fill_in "Alt", :with => "omg!"
       end

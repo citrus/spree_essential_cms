@@ -18,7 +18,7 @@ class Spree::Admin::PagesIntegrationTest < SpreeEssentials::IntegrationCase
   should "get new page" do  
     visit spree.new_admin_page_path
     assert has_content?("New Page")
-    within "#new_spree_page" do
+    within "#new_page" do
       @labels.each do |f|
         assert has_field?(f)
       end
@@ -37,7 +37,7 @@ class Spree::Admin::PagesIntegrationTest < SpreeEssentials::IntegrationCase
   
   should "create a page" do
     visit spree.new_admin_page_path
-    within "#new_spree_page" do
+    within "#new_page" do
       @labels.each_with_index do |label, index|
       	fill_in label, :with => @values[index]      
       end
@@ -68,7 +68,7 @@ class Spree::Admin::PagesIntegrationTest < SpreeEssentials::IntegrationCase
     should "edit and update" do
       visit spree.edit_admin_page_path(@page)
       
-      within "#edit_spree_page_#{@page.id}" do
+      within "#edit_page_#{@page.id}" do
         @labels.each_with_index do |label, index|
         	fill_in label, :with => @values[index].reverse      
         end
@@ -95,7 +95,7 @@ class Spree::Admin::PagesIntegrationTest < SpreeEssentials::IntegrationCase
     should "edit and update" do
       visit spree.edit_admin_page_path(@page)
       
-      within "#edit_spree_page_#{@page.id}" do
+      within "#edit_page_#{@page.id}" do
         @labels.each_with_index do |label, index|
           next if label == "Path"
         	fill_in label, :with => @values[index]      

@@ -36,17 +36,18 @@
 <%= paginate @collection %>
 
 <% content_for :sidebar do %>
-
-<div class="box">
-  <h3><%= t(:search) %></h3>
-
-  <% @content = Spree::Content.metasearch %>
-  <%= form_for [:admin, @page, @content] do |f| %>
-    <p>
-      <label><%= t('content.title') %></label><br />
-      <%= f.text_field :title_like, :size => 25 %>
-    </p>
-    <p><%= button t("search") %></p>
-  <% end %>
-</div>
+  <div class="box">
+    <h3><%= t(:search) %></h3>
+    <%= search_form_for [:admin, @page, @search] do |f| %>
+      <p>
+        <%= f.label :title_cont, t('content.title') %><br />
+        <%= f.text_field :title_cont, :size => 25 %>
+      </p>
+      <p>
+        <%= f.label :context_cont, t('content.context') %><br />
+        <%= f.text_field :context_cont, :size => 25 %>
+      </p>
+      <p><%= button t("search") %></p>
+    <% end %>
+  </div>
 <% end %>

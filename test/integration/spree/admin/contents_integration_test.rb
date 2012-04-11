@@ -17,7 +17,7 @@ class Spree::Admin::ContentsIntegrationTest < SpreeEssentials::IntegrationCase
   should "get new content" do  
     visit spree.new_admin_page_content_path(@page)
     assert has_content?("New Content")
-    within "#new_spree_content" do
+    within "#new_content" do
       assert has_field?("Title")
       assert has_field?("Page")
       assert has_field?("Body")   
@@ -40,7 +40,7 @@ class Spree::Admin::ContentsIntegrationTest < SpreeEssentials::IntegrationCase
   
   should "create some content" do
     visit spree.new_admin_page_content_path(@page)
-    within "#new_spree_content" do
+    within "#new_content" do
       fill_in "Title", :with => "Just some content"
       select @page.title, :from => "Page"
       fill_in "Body",  :with => "Just some words in the content..."
@@ -57,7 +57,7 @@ class Spree::Admin::ContentsIntegrationTest < SpreeEssentials::IntegrationCase
     
     should "edit and update" do
       visit spree.edit_admin_page_content_path(@page, @content)      
-      within "#edit_spree_content_#{@content.id}" do
+      within "#edit_content_#{@content.id}" do
         fill_in "Title", :with => "Just some content"
         select @page.title, :from => "Page"
         fill_in "Body",  :with => "Just some words in the content..."
