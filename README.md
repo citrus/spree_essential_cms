@@ -15,7 +15,7 @@ Add spree_essential_cms to your Gemfile:
 
 ```ruby
 # Spree 1.1.x
-gem 'spree_essential_cms', :git => 'git://github.com/citrus/spree_essential_cms.git', :branch => 'master'
+gem 'spree_essential_cms', '~> 0.4.0'
 
 # Spree 1.0.x
 gem 'spree_essential_cms', '~> 0.3.0.rc1'
@@ -181,6 +181,11 @@ If for any reason you want to re-create your `test/dummy` app, just re-run `bund
 ------------------------------------------------------------------------------
 Change Log
 ------------------------------------------------------------------------------
+
+**0.4.0 - 2012/5/1**
+
+* Add support for Spree 1.1.x
+
 
 **0.3.0.rc1 - 2012/1/16**
 
