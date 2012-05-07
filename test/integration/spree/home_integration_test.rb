@@ -7,9 +7,9 @@ class Spree::HomeIntegrationTest < SpreeEssentials::IntegrationCase
     @images = Dir[File.expand_path("../../../../lib/tasks/sample", __FILE__) + "/*.jpg"]
   end
   
-  should "redirect to products when no homepage is present" do
+  should "not redirect to products when no homepage is present" do
     visit "/"
-    assert_equal spree.products_path, current_path
+    assert_equal "/", current_path
   end
   
   context "an existing homepage" do
