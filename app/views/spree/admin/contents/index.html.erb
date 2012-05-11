@@ -21,7 +21,7 @@
   </thead>
   <tbody>
     <%- @collection.each do |content|%>
-    <tr id="<%= dom_id content %>">
+    <tr id="<%= spree_dom_id content %>">
       <td><span class="handle">&nbsp;</span>&nbsp; <%= link_to content.title, object_url(content) %></td>
       <td><%= content.context %>
       <td>

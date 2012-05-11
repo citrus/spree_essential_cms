@@ -10,7 +10,7 @@
   </thead>
   <tbody>
     <% @page.images.each do |image| %>
-      <tr id="<%= dom_id(image) %>">
+      <tr id="<%= spree_dom_id(image) %>">
         <td><span class="handle">&nbsp;</span>&nbsp; <%= link_to(image_tag(image.attachment.url(:mini)), image.attachment.url(:large)) %></td>
         <td><%= image.alt %></td>
         <td class="actions">

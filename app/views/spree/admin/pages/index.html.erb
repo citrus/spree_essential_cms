@@ -21,7 +21,7 @@
   </thead>
   <tbody>
     <%- @collection.each do |page|%>
-    <tr id="<%= dom_id page %>">
+    <tr id="<%= spree_dom_id page %>">
       <td><span class="handle">&nbsp;</span>&nbsp; <%=link_to page.title, object_url(page) %></td>
       <td><%= page.path %></td>
       <td><%= page.accessible %></td>
