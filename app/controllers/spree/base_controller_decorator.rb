@@ -4,7 +4,7 @@ Spree::BaseController.class_eval do
   helper_method :current_page
   
   def current_page
-    @page ||= Spree::Page.find_by_path(request.fullpath)
+    @page ||= Spree::Page.find_by_path(request.path)
   end
   
   def get_pages
