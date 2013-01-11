@@ -1,0 +1,67 @@
+es:
+  page:
+    model_name: Página
+    contents: Contenidos
+    title: Título
+    nav_title: Título de navegación
+    path: Path
+    meta_title: Meta Título
+    meta_description: Meta Descripción
+    meta_keywords: Meta Palabras Clave
+    accessible: Accesible
+    visible: Visible
+    explain_accessible: las páginas no accesibles deberán programarse en un controller propio.
+    explain_visible: las páginas visibles se verán en el menú principal
+
+  content:
+    model_name: Contenido
+    page_title: Título de la página
+    page: Página
+    title: Título
+    body: Body
+    attachment: Adjunto
+    link: Link URL
+    link_text: Texto del link
+    context: Contexto
+    hide_title: Ocultar título
+    delete_attachment: Borrar adjunto actual
+
+  pages: Páginas
+
+
+  spree:
+    admin:
+      subnav:
+        pages: Páginas
+        uploads: Subidas
+      shared:
+        contents_tab:
+          content: Contenido/CMS
+        page_tabs:
+          editing_page: Editando página
+          page_details: Datos de la página
+          contents: Contenido
+          images: Imágenes
+      pages:
+        index:
+          title: Título
+          listing_pages: Índice de páginas
+          new_page: Nueva página
+          title_contains: Título
+        new:
+          new_page: Nueva página
+
+      contents:
+        index:
+          new_content: Nuevo Contenido
+          listing_contents: Listando Contents
+        new:
+          new_content: Nuevo Contenido
+        edit:
+          edit_content: Editando Contenido
+      uploads:
+        index:
+          new_upload: Nueva subida
+          listing_uploads: Índice de subidas
+        new:
+          new_upload: Nueva Subida
